@@ -1,22 +1,27 @@
 import './App.css';
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Main from "./components/Main";
+import SideNavBar from './components/SideNavBar';
 
 function App() {
+  const [user, setUser] = useState({})
+  useEffect(() => autoLogin(), []);
 
-  // useEffect(() => {
-  //   fetch("/nfts")
-  //     .then(r => r.json())
-  //     .then(data => {
-  //       console.log(data)
-  //       setNFTs(data)
-  //     })
-  // }, []);
+  function autoLogin() {
+    fetch("/login")
+      .then(r => r.json())
+      .then(user => setUser(user))
+  }
 
   return (
-    <Main />
+    <>
+      <SideNavBar user={user} setUser={setUser} />
+      <Main user={user} setUser={setUser} />
+    </>
   )
 
 }
 
 export default App;
+
+

@@ -1,10 +1,16 @@
 function NftTile({ nft }) {
+    function handleClick() {
+        console.log("adding to watchlist")
+    }
+
     return (
-        <div>
+        <div className="NftTile">
             <h3>{nft.name}</h3>
             <img src={nft.image_url} alt="nft icon" />
             <p> Supply: {nft.supply}</p>
-            <span>Rare: {nft.rarity}</span>
+            <span>{"✦".repeat(nft.rarity)}</span>
+            <br />
+            <button onClick={handleClick}>Add to Watchlist</button>
         </div>
     )
 }
