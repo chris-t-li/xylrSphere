@@ -46,6 +46,7 @@ function Signup({ setUser }) {
     return (
         <div>
             <h2>SignUp Page</h2>
+            {signUpData.avatar_url ? <img src={signUpData.avatar_url} alt="avatar preview" /> : null}
             <form onSubmit={handleSignUp} >
                 <input type="text" name="username" placeholder="username" onChange={handleChange} value={signUpData.username} />
                 <br />

@@ -1,13 +1,8 @@
 puts "Seeding Database..."
 puts "Seeding Users..."
 
-5.times do
-    User.create(Faker::Internet.user) 
-end
+User.create!(username: "raokoss", email: "raokoss@email.com", password: "12345", avatar_url: "https://gravatar.com/avatar/4dc716dcc61ed6c377696b57581084f5?s=400&d=wavatar&r=x")
 
-5.times do |t|
-User.find(t+1).update(avatar_url: Faker::Avatar.image)
-end
 
 puts "Seeding Coins..."
 
@@ -24,11 +19,11 @@ Wallet.create(user_id: 1, coin_id: 3, quantity: 200)
 
 puts "Seeding NFTs..."
 
-Nft.create(name: "CyberPunks", rarity: 4, supply: 100, image_url: "https://i.seadn.io/gae/iIo0vm6cqiOaUwFI58-Rz61Watioc0GZ_SdhdcFJqgdYlQJNjjdzJ7-vodNEDJMG0ZJ-dE6yELuQfAJ6FzjpqtovU0bd3pLp1F1grg?auto=format&w=256)")
-Nft.create(name: "Valhalla", rarity: 6, supply: 200, image_url: "https://i.seadn.io/gcs/files/d7936464d55988206c1b16c6929856f6.jpg?auto=format&w=256")
+Nft.create(name: "CyberPunks", rarity: 4, supply: 100, chain: "ETH", image_url: "https://i.seadn.io/gae/iIo0vm6cqiOaUwFI58-Rz61Watioc0GZ_SdhdcFJqgdYlQJNjjdzJ7-vodNEDJMG0ZJ-dE6yELuQfAJ6FzjpqtovU0bd3pLp1F1grg?auto=format&w=256)")
+Nft.create(name: "Valhalla", rarity: 6, supply: 200, chain: "ETH", image_url: "https://i.seadn.io/gcs/files/d7936464d55988206c1b16c6929856f6.jpg?auto=format&w=256")
 
-Nft.create(name: "Bored Yacht Club", rarity: 3, supply: 3000, image_url: "https://i.seadn.io/gae/Ju9CkWtV-1Okvf45wo8UctR-M9He2PjILP0oOvxE89AyiPPGtrR3gysu1Zgy0hjd2xKIgjJJtWIc0ybj4Vd7wv8t3pxDGHoJBzDB?auto=format&w=256")
+Nft.create(name: "Bored Yacht Club", rarity: 3, supply: 3000, chain: "ETH", image_url: "https://i.seadn.io/gae/Ju9CkWtV-1Okvf45wo8UctR-M9He2PjILP0oOvxE89AyiPPGtrR3gysu1Zgy0hjd2xKIgjJJtWIc0ybj4Vd7wv8t3pxDGHoJBzDB?auto=format&w=256")
 
-Nft.create(name: "Cities of the World", rarity: 2, supply: 5000, image_url: "https://i.seadn.io/gae/7xLLJP7jRxvUY-5zMo6OE6CRybsh6i2Cq7Wp6AsbLHUysMzQhBCB4UxLG5uButYDs7qFXaoKCGXkWEXJ2jtc3GbWYojCuyCKcNT_?auto=format&w=256")
+Nft.create(name: "Cities of the World", rarity: 2, supply: 5000, chain: "ETH", image_url: "https://i.seadn.io/gae/7xLLJP7jRxvUY-5zMo6OE6CRybsh6i2Cq7Wp6AsbLHUysMzQhBCB4UxLG5uButYDs7qFXaoKCGXkWEXJ2jtc3GbWYojCuyCKcNT_?auto=format&w=256")
 
 puts "Done! :)"

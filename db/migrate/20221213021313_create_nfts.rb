@@ -5,6 +5,7 @@ class CreateNfts < ActiveRecord::Migration[7.0]
       t.string :image_url
       t.integer :rarity
       t.integer :supply
+      t.string :chain
 
       t.timestamps
     end

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import NftListContainer from "./NftListContainer";
-// import SideNavBar from "./SideNavBar";
 import Login from "./Login";
 import Profile from "./Profile";
 import Portfolio from "./Portfolio";
@@ -23,7 +22,7 @@ function Main({ user, setUser }) {
             <Routes>
                 <Route path="/" element={<NftListContainer nfts={nfts} user={user} setUser={setUser} />} />
                 <Route path="/login" element={<Login user={user} setUser={setUser} />} />
-                <Route path="/signup" element={<Signup />} />
+                <Route path="/signup" element={<Signup setUser={setUser} />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/portfolio" element={<Portfolio />} />
             </Routes>
