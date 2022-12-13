@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
-  database: xylrSphere_production
-  username: xylrSphere
-  password: <%= ENV["XYLRSPHERE_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  # database: xylrSphere_production
+  # username: xylrSphere
+  # password: <%= ENV["XYLRSPHERE_DATABASE_PASSWORD"] %>
