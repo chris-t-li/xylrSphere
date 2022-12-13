@@ -5,4 +5,6 @@ class User < ApplicationRecord
 
     has_many :wallets
     has_many :coins, through: :wallets
+
+    validates :username, uniqueness: true
 end

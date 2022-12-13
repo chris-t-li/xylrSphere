@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import NftListContainer from "./NftListContainer";
 // import SideNavBar from "./SideNavBar";
 import Login from "./Login";

@@ -29,10 +29,9 @@
 }
 
 .NftTile {
-  /* width: 25%; */
   display: inline-block;
   margin: 1%;
-  padding: 2%;
+  padding: 1% 2%;
   border: 1px solid lightgrey;
   border-radius: 1%;
 }
@@ -43,6 +42,10 @@
   float: left;
   background-color: black;
   color: white;
+}
+
+h3 {
+  margin: 5% auto;
 }
 
 span {
