@@ -38,7 +38,7 @@
 
 .sideNavBar {
   width: 200px;
-  height: 100vh;
+  height: 2000px;
   float: left;
   background-color: black;
   color: white;
@@ -50,6 +50,12 @@ h3 {
 
 span {
   color: gold;
+}
+
+#nft-price-chart {
+  display: inline-block;
+  width: 800px;
+  /* float: right; */
 }
 
 @keyframes App-logo-spin {

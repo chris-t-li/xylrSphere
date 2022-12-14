@@ -22,6 +22,7 @@ function SideNavBar({ user, setUser }) {
                     <li>Profile</li>
                     <li>Portfolio</li>
                     <li>Watchlist</li>
+                    <li onClick={() => navigate("/nftmain")}>NFT Details</li>
                     <li>Wallet</li>
                     <li onClick={() => navigate("/signup")}>SignUp</li>
                     <li onClick={handleClick}>{user ? "Logout" : "Login"}</li>

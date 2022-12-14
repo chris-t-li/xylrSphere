@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # resources :pricings
+  resources :pricings, only: [:create]
   # resources :wallets
   # resources :coins
   # resources :portfolios
