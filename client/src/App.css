@@ -38,8 +38,10 @@
 
 .sideNavBar {
   width: 200px;
-  height: 2000px;
-  float: left;
+
+  /* height: 100%; */
+  display: flex;
+  flex-grow: 1;
   background-color: black;
   color: white;
 }

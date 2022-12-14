@@ -22,7 +22,7 @@ function NftMain() {
                 setTimeData(priceData.map(p => p.price_time));
                 setPriceData(priceData.map(p => p.price_nft));
             })
-        // }, 5000)
+        // }, 1000)
     }, [])
 
     return (
