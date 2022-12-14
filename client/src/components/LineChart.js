@@ -1,5 +1,5 @@
 import React from 'react';
-import { Chart } from 'chart.js/auto'
+// import { Chart } from 'chart.js/auto'
 import { Line } from 'react-chartjs-2';
 
 function LineChart({ priceData, timeData }) {
@@ -15,7 +15,7 @@ function LineChart({ priceData, timeData }) {
         ],
     };
     // Line Chart Animation: https://www.chartjs.org/docs/latest/samples/animations/progressive-line.html
-    const totalDuration = 2000;
+    const totalDuration = 4000;
     const delayBetweenPoints = totalDuration / priceData.length;
     const previousY = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
     const animation = {

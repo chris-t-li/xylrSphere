@@ -41,6 +41,20 @@ Nft.create(name: "Claynosaurz", rarity: 5, supply: 300, chain: "SOL", image_url:
 
 Nft.create(name: "Sensei", rarity: 6, supply: 200, chain: "SOL", image_url: "https://i.seadn.io/gae/yrz0cvbYXJ_tRqXs_5r03S-lWfYPoNJYrviY7cAJdYeQKmT0_0b5xLyHlZjVmaRD2uRC8HNdr_c6p_V9pfna4SCvrbM3kWoDx_t9_g?auto=format&w=256")
 
-Pricing.create(user_id: 1, nft_id: 1, price_nft: 0.0020)
+Pricing.create(nft_id: 1, coin_id: 1, price_nft: 0.0020)
+
+puts "Seeding Pricing.."
+Pricing.create(nft_id: 2, coin_id: 1, price_nft: 1.345)
+
+Pricing.create(nft_id: 3, coin_id: 1, price_nft: 65)
+Pricing.create(nft_id: 4, coin_id: 1, price_nft: 0.875)
+Pricing.create(nft_id: 5, coin_id: 1, price_nft: 0.003)
+Pricing.create(nft_id: 6, coin_id: 1, price_nft: 0.005)
+Pricing.create(nft_id: 7, coin_id: 1, price_nft: 0.235)
+Pricing.create(nft_id: 8, coin_id: 1, price_nft: 0.0895)
+Pricing.create(nft_id: 9, coin_id: 1, price_nft: 0.0275)
+Pricing.create(nft_id: 10, coin_id: 3, price_nft: 44)
+Pricing.create(nft_id: 11, coin_id: 3, price_nft: 2.75)
+
 
 puts "Done! :)"

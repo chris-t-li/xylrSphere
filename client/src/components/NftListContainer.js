@@ -7,6 +7,7 @@ function NftListContainer({ nfts, user }) {
 
     useEffect(() => setNftList(nfts), [nfts]);
 
+
     const filterNfts = (searchQuery) => {
         setNftList(nfts.filter(nft => {
             return nft.name.includes(searchQuery)

@@ -26,6 +26,7 @@ function WatchlistItem({ nft, setReFetch }) {
             {/* Price */}
             {/* Small Chart [stretch]*/}
             <button onClick={removeFromWatchlist}>🗑</button>
+            <button >☰</button>
         </div>
     )
 }

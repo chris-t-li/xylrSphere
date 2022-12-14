@@ -1,4 +1,5 @@
 function NftTile({ nft, user }) {
+
     function handleClick() {
         fetch(`/watchlist`, {
             method: "POST",
@@ -22,7 +23,7 @@ function NftTile({ nft, user }) {
             <img src={nft.image_url} alt="nft icon" />
             <br />
             <span>{"✦".repeat(nft.rarity)}</span>
-            <p>{nft.chain}:</p>
+            <p>{nft.chain}: {nft.latest_price.price_nft}</p>
             <p> Supply: {nft.supply}</p>
             {user ? <button onClick={handleClick}>Add to Watchlist</button> : null}
             {/* Need watchlist button to only show if NFT is not currently in user's watchlist */}
