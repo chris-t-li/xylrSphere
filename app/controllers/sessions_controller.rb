@@ -1,8 +1,9 @@
 class SessionsController < ApplicationController
 
     def show
+        # byebug
         user = User.find(session[:user_id])
-        render json: user
+        render json: user, status: :ok
     end
 
     # POST /login

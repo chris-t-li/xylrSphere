@@ -16,12 +16,18 @@ function Login({ user, setUser }) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(loginData)
         })
-            .then(r => r.json())
-            .then(user => {
-                setLoginData({ username: "", password: "" })
-                setUser(user)
-                navigate("/")
+            .then(r => {
+                if (r.ok) {
+                    r.json().then(user => {
+                        setLoginData({ username: "", password: "" })
+                        setUser(user)
+                        navigate("/")
+                    })
+                } else {
+                    alert("Invalid Signin Details")
+                }
             })
+
             .catch(e => console.error(e))
     }
 

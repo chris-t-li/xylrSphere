@@ -19,9 +19,10 @@ function SideNavBar({ user, setUser }) {
             <nav className="sideNavBar">
                 <ul>
                     <li onClick={() => navigate("/")}>Exchange</li>
-                    <li>Profile</li>
+                    <li onClick={() => navigate("/profile")}>Profile</li>
                     <li>Portfolio</li>
-                    <li>Watchlist</li>
+                    {/* Watchlist is only available if user is logged in */}
+                    {user ? <li onClick={() => navigate("/watchlist")}>Watchlist</li> : null}
                     <li onClick={() => navigate("/nftmain")}>NFT Details</li>
                     <li>Wallet</li>
                     <li onClick={() => navigate("/signup")}>SignUp</li>

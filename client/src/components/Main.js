@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import NftListContainer from "./NftListContainer";
 import Login from "./Login";
 import Profile from "./Profile";
+import Watchlist from "./Watchlist";
 import NftMain from "./NftMain.js";
 import Portfolio from "./Portfolio";
 import Signup from "./Signup";
@@ -25,6 +26,7 @@ function Main({ user, setUser }) {
                 <Route path="/login" element={<Login user={user} setUser={setUser} />} />
                 <Route path="/signup" element={<Signup setUser={setUser} />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/watchlist" element={<Watchlist />} />
                 <Route path="/nftmain" element={<NftMain />} />
                 <Route path="/portfolio" element={<Portfolio />} />
             </Routes>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import NftTile from "./NftTile";
 import Search from "./Search";
 
-function NftListContainer({ nfts }) {
+function NftListContainer({ nfts, user }) {
     const [nftList, setNftList] = useState([]);
 
     useEffect(() => setNftList(nfts), [nfts]);
@@ -13,7 +13,7 @@ function NftListContainer({ nfts }) {
         }))
     }
     const renderedNftList = nftList.map(nft => {
-        return <NftTile key={nft.id} nft={nft} />
+        return <NftTile key={nft.id} nft={nft} user={user} />
     })
 
     return (

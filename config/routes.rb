@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :pricings, only: [:create]
   # resources :wallets
   # resources :coins
-  # resources :portfolios
+  resources :portfolios, only: [:create]
   resources :nfts, only: [:index]
   resources :users, only: [:show, :create, :destroy]
 
