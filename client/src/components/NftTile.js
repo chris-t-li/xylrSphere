@@ -1,15 +1,6 @@
 function NftTile({ nft, user }) {
     function handleClick() {
-        // console.log("adding to watchlist")
-        // add this to watchlist state.. 
-        // post to backend
-        console.log({
-            user_id: user,
-            nft_id: nft.id,
-            watchlist: true
-        })
-        return
-        fetch(`/portfolios`, {
+        fetch(`/watchlist`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -20,6 +11,9 @@ function NftTile({ nft, user }) {
                 watchlist: true
             })
         })
+            .then(r => r.json())
+            .then(console.log)
+            .catch(e => console.error(e))
     }
 
     return (
@@ -31,6 +25,7 @@ function NftTile({ nft, user }) {
             <p>{nft.chain}:</p>
             <p> Supply: {nft.supply}</p>
             {user ? <button onClick={handleClick}>Add to Watchlist</button> : null}
+            {/* Need watchlist button to only show if NFT is not currently in user's watchlist */}
         </div>
     )
 }

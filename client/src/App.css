@@ -60,6 +60,27 @@ span {
   /* float: right; */
 }
 
+.watchlist-icon {
+  height: 75px;
+  width: 75px;
+}
+
+.watchlist-row {
+  max-height: 125px;
+  min-width: 97.5vw;
+  display: inline-block;
+  border: 1px solid black
+}
+
+.watchlist-row * {
+  float: left;
+}
+
+.watchlist-row h5 {
+  min-width: 250px;
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

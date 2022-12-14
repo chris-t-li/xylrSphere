@@ -26,7 +26,7 @@ function Main({ user, setUser }) {
                 <Route path="/login" element={<Login user={user} setUser={setUser} />} />
                 <Route path="/signup" element={<Signup setUser={setUser} />} />
                 <Route path="/profile" element={<Profile />} />
-                <Route path="/watchlist" element={<Watchlist />} />
+                <Route path="/watchlist" element={<Watchlist user={user} />} />
                 <Route path="/nftmain" element={<NftMain />} />
                 <Route path="/portfolio" element={<Portfolio />} />
             </Routes>
