@@ -21,14 +21,22 @@ function Main({ user, setUser }) {
     }, [])
 
     useEffect(() => {
-        fetch(`/watchlist/${user.id}`)
-            .then(r => r.json())
-            .then(listData => {
-                setWatchlist(listData.filter(listItem => {
-                    return listItem.watchlist === true
-                }));
-            })
+        fetchWatchlist();
     }, [user, reFetch])
+
+    function fetchWatchlist() {
+        if (user) {
+            fetch(`/watchlist/${user.id}`)
+                .then(r => r.json())
+                .then(listData => {
+                    setWatchlist(listData.filter(listItem => {
+                        return listItem.watchlist === true
+                    }));
+                })
+        } else {
+            return
+        }
+    }
 
     return (
         <main>
@@ -47,7 +55,10 @@ function Main({ user, setUser }) {
                 <Route path="/watchlist" element={<Watchlist
                     user={user}
                     watchlist={watchlist}
+
+                    reFetch={reFetch}
                     setReFetch={setReFetch}
+                    fetchWatchlist={fetchWatchlist}
                 />} />
                 <Route path="/nftmain" element={<NftMain />} />
                 <Route path="/portfolio" element={<Portfolio />} />

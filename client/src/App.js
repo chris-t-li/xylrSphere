@@ -9,8 +9,16 @@ function App() {
 
   function autoLogin() {
     fetch("/login")
-      .then(r => r.json())
-      .then(user => setUser(user))
+      .then(r => {
+        if (r.ok) {
+          r.json().then(user => {
+            console.log(user)
+            setUser(user)
+          })
+        } else {
+          console.error("Login Error")
+        }
+      })
   }
 
   return (
