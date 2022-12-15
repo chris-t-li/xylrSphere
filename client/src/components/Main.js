@@ -4,9 +4,11 @@ import NftListContainer from "./NftListContainer";
 import Login from "./Login";
 import Profile from "./Profile";
 import Watchlist from "./Watchlist";
-import NftMain from "./NftMain.js";
+import Wallet from "./Wallet";
+// import NftMain from "./NftMain.js";
 import Portfolio from "./Portfolio";
 import Signup from "./Signup";
+import NoMatch from "./NoMatch";
 
 
 function Main({ user, setUser }) {
@@ -42,13 +44,15 @@ function Main({ user, setUser }) {
         <main>
 
             <Routes>
-                <Route path="/" element={
+                <Route exact path="/home" element={
                     <NftListContainer
                         nfts={nfts}
                         user={user}
                         setUser={setUser}
                         watchlist={watchlist}
-                    />} />
+                    />} >
+                    {/* <Route path={`${nft.id}`} element={<NftMain />} /> */}
+                </Route >
                 <Route path="/login" element={<Login user={user} setUser={setUser} />} />
                 <Route path="/signup" element={<Signup setUser={setUser} />} />
                 <Route path="/profile" element={<Profile />} />
@@ -60,8 +64,10 @@ function Main({ user, setUser }) {
                     setReFetch={setReFetch}
                     fetchWatchlist={fetchWatchlist}
                 />} />
-                <Route path="/nftmain" element={<NftMain />} />
+                <Route path="/wallet" element={<Wallet user={user} />} />
+                {/* <Route path="/nftmain" element={<NftMain />} /> */}
                 <Route path="/portfolio" element={<Portfolio />} />
+                <Route path="/*" element={<NoMatch />} />
             </Routes>
 
         </main>

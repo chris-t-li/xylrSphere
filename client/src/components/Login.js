@@ -21,7 +21,7 @@ function Login({ user, setUser }) {
                     r.json().then(user => {
                         setLoginData({ username: "", password: "" })
                         setUser(user)
-                        navigate("/")
+                        navigate("/home")
                     })
                 } else {
                     alert("Invalid Signin Details")

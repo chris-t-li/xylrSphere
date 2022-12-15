@@ -80,6 +80,18 @@ span {
   min-width: 250px;
 }
 
+table {
+  border: 1px solid;
+}
+
+th {
+  height: 30px;
+}
+
+td {
+  width: 100px;
+}
+
 
 @keyframes App-logo-spin {
   from {

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :pricings, only: [:create]
-  # resources :wallets
+  # resources :wallets, only: [:index]
   # resources :coins
   # resources :portfolios
   resources :nfts, only: [:index]
@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   get "/watchlist/:user_id", to: "portfolios#show_my_watchlist"
   post "/watchlist", to: "portfolios#add_to_watchlist"
   patch "/watchlist/:id", to: "portfolios#remove_from_watchlist"
+
+  # Wallet Routes
+  get "/wallets/:user_id", to: "wallets#show_my_wallet"
 end
