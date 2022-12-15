@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import WalletTable from "./WalletTable";
+import AddToWallet from "./AddToWallet"
 
 function Wallet({ user }) {
     const [walletData, setWalletData] = useState([]);
@@ -19,6 +20,7 @@ function Wallet({ user }) {
         <div>
             <h1>Wallet</h1>
             <WalletTable walletData={walletData} />
+            <AddToWallet />
         </div>
     )
 }

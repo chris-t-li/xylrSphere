@@ -18,4 +18,7 @@ Rails.application.routes.draw do
 
   # Wallet Routes
   get "/wallets/:user_id", to: "wallets#show_my_wallet"
+
+  get "/secret", to: "payment_process#process_payment" 
+  
 end
