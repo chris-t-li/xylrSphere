@@ -1,4 +1,16 @@
-function NftTile({ nft, user }) {
+import { useEffect, useState } from "react";
+
+function NftTile({ nft, user, watchlist }) {
+    const [isOnWatchList, setIsOnWatchList] = useState();
+
+    useEffect(() => {
+        function isWatchList(nftParam) {
+            return nftParam.nft.id === nft.id
+        }
+        if (watchlist.find(isWatchList)) {
+            setIsOnWatchList(true)
+        }
+    }, [watchlist])
 
     function handleClick() {
         fetch(`/watchlist`, {
@@ -25,8 +37,7 @@ function NftTile({ nft, user }) {
             <span>{"✦".repeat(nft.rarity)}</span>
             <p>{nft.chain}: {nft.latest_price.price_nft}</p>
             <p> Supply: {nft.supply}</p>
-            {user ? <button onClick={handleClick}>Add to Watchlist</button> : null}
-            {/* Need watchlist button to only show if NFT is not currently in user's watchlist */}
+            {isOnWatchList ? <button disabled>In Watchlist</button> : <button onClick={handleClick}>Add to Watchlist</button>}
         </div>
     )
 }

@@ -4,6 +4,7 @@ import LineChart from "./LineChart";
 function NftMain() {
     const [priceData, setPriceData] = useState([]);
     const [timeData, setTimeData] = useState([]);
+    // let myChart
 
     // Brute Force Price Generator Request
     useEffect(() => {
@@ -17,12 +18,11 @@ function NftMain() {
         })
             .then(r => r.json())
             .then(priceData => {
-                console.table(priceData);
+                // console.table(priceData);
                 setTimeData(priceData.map(p => p.price_time));
                 setPriceData(priceData.map(p => p.price_nft));
             })
         // }, 1000)
-
     }, [])
 
     return (
