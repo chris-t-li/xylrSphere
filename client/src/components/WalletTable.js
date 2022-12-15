@@ -18,15 +18,19 @@ function WalletTable({ walletData }) {
     return (
         <div>
             <table>
-                <tr>
-                    <th>Ticker</th>
-                    <th>Icon</th>
-                    <th>Coin</th>
-                    <th>Price</th>
-                    <th>Qty</th>
-                    <th>Value</th>
-                </tr>
-                {renderWalletData}
+                <thead>
+                    <tr>
+                        <th>Ticker</th>
+                        <th>Icon</th>
+                        <th>Coin</th>
+                        <th>Price</th>
+                        <th>Qty</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {renderWalletData}
+                </tbody>
             </table>
         </div>
     )

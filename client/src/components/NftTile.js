@@ -32,9 +32,8 @@ function NftTile({ nft, user, watchlist }) {
     }
 
     function showNftDetails() {
-        // 
-        // console.log("take me to this NFT")
-        navigate(`/${nft.id}`)
+        console.log("take me to this NFT")
+        // navigate(`/${nft.id}`)
 
     }
 

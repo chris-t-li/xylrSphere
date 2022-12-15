@@ -18,7 +18,7 @@ function SideNavBar({ user, setUser }) {
             <h1>XylrSphere</h1>
             <nav className="sideNavBar">
                 <ul>
-                    <li onClick={() => navigate("/")}>Exchange</li>
+                    <li onClick={() => navigate("/home")}>Exchange</li>
                     <li onClick={() => navigate("/profile")}>Profile</li>
                     <li>Portfolio</li>
                     {user ? <li onClick={() => navigate("/watchlist")}>Watchlist</li> : null}
