@@ -41,6 +41,10 @@ Nft.create(name: "Claynosaurz", rarity: 5, supply: 300, chain: "SOL", image_url:
 
 Nft.create(name: "Sensei", rarity: 6, supply: 200, chain: "SOL", image_url: "https://i.seadn.io/gae/yrz0cvbYXJ_tRqXs_5r03S-lWfYPoNJYrviY7cAJdYeQKmT0_0b5xLyHlZjVmaRD2uRC8HNdr_c6p_V9pfna4SCvrbM3kWoDx_t9_g?auto=format&w=256")
 
+Nft.create(name: "Sushiverse", rarity: 7, supply: 50, chain: "ETH", image_url: "https://i.seadn.io/gae/V9y_3Yani-Y38GkoyopsEo2tb24vLoCVCGy4VugGS-upmw8GKnoui5FBQXrOVdqfpqzYOqNLjISBqkiXXrAeEocx5NpuC9yeCbhJMnM?auto=format&w=256")
+
+Nft.create(name: "Round Big Boy", rarity: 10, supply: 10, chain: "ETH", image_url: "https://i.seadn.io/gae/28AvfXcGX48MASyt4ZZ6tXhmN2U1xlaYYECLJnij8wlHR70KfTsa8UR-hzzHXOH54Gwrk1J9chfGETpXXUdM4t1jUBSYMtVBjNJKmag?auto=format&w=256")
+
 Pricing.create(nft_id: 1, coin_id: 1, price_nft: 0.0020)
 
 puts "Seeding Pricing.."
@@ -55,6 +59,8 @@ Pricing.create(nft_id: 8, coin_id: 1, price_nft: 0.0895)
 Pricing.create(nft_id: 9, coin_id: 1, price_nft: 0.0275)
 Pricing.create(nft_id: 10, coin_id: 3, price_nft: 44)
 Pricing.create(nft_id: 11, coin_id: 3, price_nft: 2.75)
+Pricing.create(nft_id: 12, coin_id: 1, price_nft: 0.008)
+Pricing.create(nft_id: 13, coin_id: 1, price_nft: 0.005)
 
 
 puts "Done! :)"

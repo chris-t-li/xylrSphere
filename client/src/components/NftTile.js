@@ -15,6 +15,7 @@ function NftTile({ nft, user, watchlist }) {
     }, [watchlist])
 
     function addToWatchListClick() {
+        setIsOnWatchList(true);
         fetch(`/watchlist`, {
             method: "POST",
             headers: {
@@ -37,6 +38,20 @@ function NftTile({ nft, user, watchlist }) {
 
     }
 
+    const watchListButton = () => {
+        if (!user) {
+            return null
+        } else if (isOnWatchList) {
+            return (
+                <button className="btn btn-outline-secondary" disabled>In Watchlist</button>
+            )
+        } else {
+            return (
+                <button className="btn btn-outline-success" onClick={addToWatchListClick}>Add to Watchlist</button>
+            )
+        }
+    }
+
     return (
         <div
             className="card"
@@ -49,16 +64,17 @@ function NftTile({ nft, user, watchlist }) {
             }}
             onClick={showNftDetails}>
             <div style={{ height: "18em", overflow: "hidden" }}>
-                <img class="card-img-top" src={nft.image_url} alt="nft icon"
+                <img className="card-img-top" src={nft.image_url} alt="nft icon"
                     style={{ transition: "transform .5s ease" }}
                 />
             </div>
             <div class="card-body">
-                <h5 class="card-title">{nft.name}</h5>
-                <span class="card-text">{"✦".repeat(nft.rarity)}</span>
-                <p class="card-text">{nft.chain}: {nft.latest_price.price_nft.toFixed(3)}</p>
-                <p class="card-text"> Supply: {nft.supply}</p>
-                {!user ? null : isOnWatchList ? <button class="btn btn-outline-secondary" disabled>In Watchlist</button> : <button class="btn btn-outline-success" onClick={addToWatchListClick}>Add to Watchlist</button>}
+                <h5 className="card-title">{nft.name}</h5>
+                <span className="card-text">{"✦".repeat(nft.rarity)}</span>
+                <p className="card-text">{nft.chain}: {nft.latest_price.price_nft.toFixed(3)}</p>
+                <p className="card-text"> Supply: {nft.supply}</p>
+                {watchListButton()}
+                {/* {!user ? null : isOnWatchList ? <button class="btn btn-outline-secondary" disabled>In Watchlist</button> : <button class="btn btn-outline-success" onClick={addToWatchListClick}>Add to Watchlist</button>} */}
             </div>
         </div>
     )
