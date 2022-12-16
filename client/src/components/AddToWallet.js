@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import CheckoutForm from "./CheckoutForm";
+import { useState } from "react";
+import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import CheckoutForm from "./CheckoutForm";
 
 const myModule = require("../key")
 const key = myModule.key
@@ -29,17 +29,15 @@ function AddToWallet() {
     return (
         <div id="stripe-checkout">
             <h2>Add to Wallet</h2>
-
             <form onSubmit={handleSubmit}>
                 <input type="text" placeholder="Search Coin"></input>
                 <input type="text" placeholder="Qty"></input>
                 <input type="submit" value="Buy Coins"></input>
-
-                {options ?
-                    <Elements stripe={stripePromise} options={options}>
-                        <PaymentElement />
-                    </Elements> : null}
             </form>
+            {options ?
+                <Elements stripe={stripePromise} options={options}>
+                    <CheckoutForm />
+                </Elements> : null}
 
         </div>
     )

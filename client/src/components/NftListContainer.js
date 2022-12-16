@@ -9,7 +9,7 @@ function NftListContainer({ nfts, user, watchlist }) {
 
     const filterNfts = (searchQuery) => {
         setNftList(nfts.filter(nft => {
-            return nft.name.includes(searchQuery)
+            return nft.name.toLowerCase().includes(searchQuery)
         }))
     }
     const renderedNftList = nftList.map(nft => {
@@ -17,7 +17,8 @@ function NftListContainer({ nfts, user, watchlist }) {
     })
 
     return (
-        <div>
+        <div id="nft-list-container">
+            <h1>Exchange</h1>
             <Search filterNfts={filterNfts} />
             {renderedNftList}
         </div>

@@ -14,7 +14,7 @@ function Watchlist({ user, watchlist, reFetch, setReFetch, fetchWatchlist }) {
     })
 
     return (
-        <div>
+        <div id="watchlist-container">
             <h2>My WatchList</h2>
             {renderWatchlist}
         </div>

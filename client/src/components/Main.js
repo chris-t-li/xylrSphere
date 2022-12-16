@@ -5,11 +5,9 @@ import Login from "./Login";
 import Profile from "./Profile";
 import Watchlist from "./Watchlist";
 import Wallet from "./Wallet";
-// import NftMain from "./NftMain.js";
 import Portfolio from "./Portfolio";
 import Signup from "./Signup";
 import NoMatch from "./NoMatch";
-
 
 function Main({ user, setUser }) {
     const [nfts, setNFTs] = useState([]);
@@ -51,7 +49,7 @@ function Main({ user, setUser }) {
                         setUser={setUser}
                         watchlist={watchlist}
                     />} >
-                    {/* <Route path={`${nft.id}`} element={<NftMain />} /> */}
+
                 </Route >
                 <Route path="/login" element={<Login user={user} setUser={setUser} />} />
                 <Route path="/signup" element={<Signup setUser={setUser} />} />
@@ -64,8 +62,9 @@ function Main({ user, setUser }) {
                     setReFetch={setReFetch}
                     fetchWatchlist={fetchWatchlist}
                 />} />
-                <Route path="/wallet" element={<Wallet user={user} />} />
-                {/* <Route path="/nftmain" element={<NftMain />} /> */}
+                <Route exact path="/wallet" element={<Wallet user={user} />} >
+
+                </Route>
                 <Route path="/portfolio" element={<Portfolio />} />
                 <Route path="/*" element={<NoMatch />} />
             </Routes>

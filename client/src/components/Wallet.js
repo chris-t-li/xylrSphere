@@ -5,6 +5,7 @@ import AddToWallet from "./AddToWallet"
 function Wallet({ user }) {
     const [walletData, setWalletData] = useState([]);
 
+
     useEffect(() => {
         fetch(`/wallets/${user.id}`)
             .then(r => {
@@ -17,7 +18,7 @@ function Wallet({ user }) {
     }, [user])
 
     return (
-        <div>
+        <div id="wallet-container">
             <h1>Wallet</h1>
             <WalletTable walletData={walletData} />
             <AddToWallet />

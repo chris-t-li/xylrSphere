@@ -37,7 +37,7 @@ function Signup({ setUser }) {
                         passwordConfirm: "",
                         avatar_url: ""
                     })
-                    navigate("/");
+                    navigate("/home");
                 })
                 .catch(e => console.error(e))
         }

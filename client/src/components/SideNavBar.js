@@ -1,4 +1,5 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Nav from "react-bootstrap/Nav";
 
 function SideNavBar({ user, setUser }) {
     const navigate = useNavigate();
@@ -15,8 +16,8 @@ function SideNavBar({ user, setUser }) {
 
     return (
         <div className="sideNavBar">
-            <h1>XylrSphere</h1>
-            <nav className="sideNavBar">
+            <h1 id="xylrsphere-main-heading">XylrSphere</h1>
+            <nav className="sideNavBar" >
                 <ul>
                     <li onClick={() => navigate("/home")}>Exchange</li>
                     <li onClick={() => navigate("/profile")}>Profile</li>

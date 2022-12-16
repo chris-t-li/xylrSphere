@@ -1,13 +1,48 @@
-import { useState } from 'react';
-import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
+import { useEffect, useState } from 'react';
+import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
+// import PaymentStatus from './PaymentStatus';
 
-function CheckoutForm({ options }) {
+function CheckoutForm() {
     const stripe = useStripe();
     const elements = useElements();
+    const [message, setMessage] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    // const [showPaymentStatus, setShowPaymentStatus] = useState(false);
 
-    function submitPayment(e) {
+    useEffect(() => {
+        if (!stripe) {
+            return;
+        }
+
+        const clientSecret = new URLSearchParams(window.location.search).get("payment_intent_client_secret");
+
+        if (!clientSecret) {
+            return;
+        }
+
+        stripe
+            .retrievePaymentIntent(clientSecret)
+            .then(({ paymentIntent }) => {
+                debugger
+                switch (paymentIntent.status) {
+                    case "succeeded":
+                        setMessage("Success! Payment received.");
+                        break;
+                    case "processing":
+                        setMessage("Payment processing. We'll update you when payment is received.");
+                        break;
+                    case "requires_payment_method":
+                        setMessage("Payment failed. Please try another payment method.");
+                        break;
+                    default:
+                        setMessage("Something went wrong.");
+                        break;
+                }
+            });
+    }, [stripe]);
+
+    const submitPayment = async (e) => {
         e.preventDefault();
         console.log("procesing payment...")
 
@@ -15,14 +50,37 @@ function CheckoutForm({ options }) {
             return;
         }
 
+        setIsLoading(true);
 
+        const { error } = await stripe.confirmPayment({
+            elements,
+            confirmParams: {
+                return_url: "http://localhost:4000/wallet/",
+            },
+        })
+
+        // setShowPaymentStatus(true)
+
+        if (error) {
+            setErrorMessage(error.message);
+        } else {
+            setMessage("An unexpected error occurred.");
+        }
+
+        setIsLoading(false);
     }
 
     return (
-        <form onSubmit={submitPayment}>
+        <div>
+            <form onSubmit={submitPayment}>
+                <PaymentElement />
+                <button disabled={isLoading || !stripe || !elements}>Submit</button>
+                {errorMessage && <div>{errorMessage}</div>}
+            </form>
+            {message && <p>{message}</p>}
+            {/* {showPaymentStatus ? <PaymentStatus /> : null} */}
 
-            <input type="submit"></input>
-        </form>
+        </div>
     )
 }
 

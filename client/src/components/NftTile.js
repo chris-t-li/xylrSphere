@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 function NftTile({ nft, user, watchlist }) {
     const [isOnWatchList, setIsOnWatchList] = useState();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     useEffect(() => {
         function isWatchList(nftParam) {
@@ -38,14 +38,23 @@ function NftTile({ nft, user, watchlist }) {
     }
 
     return (
-        <div className="NftTile" onClick={showNftDetails}>
-            <h3>{nft.name}</h3>
-            <img src={nft.image_url} alt="nft icon" />
-            <br />
-            <span>{"✦".repeat(nft.rarity)}</span>
-            <p>{nft.chain}: {nft.latest_price.price_nft}</p>
-            <p> Supply: {nft.supply}</p>
-            {isOnWatchList ? <button disabled>In Watchlist</button> : <button onClick={addToWatchListClick}>Add to Watchlist</button>}
+        <div
+            className="card"
+            style={{
+                width: "18rem",
+                // height: "31rem",
+                display: "inline-block",
+                margin: "2%",
+            }}
+            onClick={showNftDetails}>
+            <img class="card-img-top" src={nft.image_url} alt="nft icon" />
+            <div class="card-body">
+                <h5 class="card-title">{nft.name}</h5>
+                <span class="card-text">{"✦".repeat(nft.rarity)}</span>
+                <p class="card-text">{nft.chain}: {nft.latest_price.price_nft.toFixed(3)}</p>
+                <p class="card-text"> Supply: {nft.supply}</p>
+                {!user ? null : isOnWatchList ? <button class="btn btn-outline-secondary" disabled>In Watchlist</button> : <button class="btn btn-outline-success" onClick={addToWatchListClick}>Add to Watchlist</button>}
+            </div>
         </div>
     )
 }
