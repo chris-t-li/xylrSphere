@@ -44,7 +44,7 @@ function Signup({ setUser }) {
     }
 
     return (
-        <div>
+        <div id="signup-container">
             <h2>SignUp Page</h2>
             {signUpData.avatar_url ? <img src={signUpData.avatar_url} alt="avatar preview" /> : null}
             <form onSubmit={handleSignUp} >

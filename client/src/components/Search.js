@@ -6,15 +6,11 @@ function Search({ filterNfts }) {
 
     const handleChange = (e) => {
         setSearchQuery(e.target.value.toLowerCase());
-        if (searchQuery.length >= 2) {
-            filterNfts(searchQuery);
-        } else {
-            filterNfts("")
-        }
+        filterNfts(e.target.value.toLowerCase());
     }
 
     return (
-        <div id="search-input" className="col-3">
+        <div id="search-input" className="col-3" style={{ margin: "2% 0 0 2%" }}>
             <Form>
                 <Form.Group>
                     <Form.Control

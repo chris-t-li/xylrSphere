@@ -35,7 +35,13 @@ function Login({ user, setUser }) {
     return (
         <div id="login-container" className="col-4" style={{ backgroundColor: "black" }}>
 
-            <img src="/futuregloba.gif" alt="machine learning" style={{ width: "100vw" }} />
+            <img
+                src="/futuregloba.gif"
+                alt="futuristic globe"
+                style={{
+                    width: "100vw",
+
+                }} />
 
             <Form autocomplete="off"
                 onSubmit={handleLogin}
@@ -48,9 +54,9 @@ function Login({ user, setUser }) {
                     borderRadius: "5%"
 
                 }}>
-                <h3>Login Page</h3>
+                <h3 style={{ color: "white", margin: "10% 0" }}>Login Page</h3>
                 <Form.Group>
-                    <Form.Label>User</Form.Label>
+                    {/* <Form.Label style={{ color: "lightgrey" }}>User</Form.Label> */}
                     <Form.Control
                         type="text" placeholder="username" name="username"
                         onChange={handleChange}
@@ -58,13 +64,14 @@ function Login({ user, setUser }) {
                         style={{
                             backgroundColor: "black",
                             color: "white",
-                            borderColor: "darkblue"
+                            borderColor: "darkblue",
+                            margin: "5% 0"
                         }}
                     ></Form.Control>
                 </Form.Group>
 
                 <Form.Group>
-                    <Form.Label>Password</Form.Label>
+                    {/* <Form.Label style={{ color: "lightgrey" }}>Password</Form.Label> */}
                     <Form.Control
                         type="password" placeholder="Password" name="password"
                         onChange={handleChange}

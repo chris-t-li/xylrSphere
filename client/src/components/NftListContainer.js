@@ -8,7 +8,7 @@ function NftListContainer({ nfts, user, watchlist }) {
     useEffect(() => setNftList(nfts), [nfts]);
 
     const filterNfts = (searchQuery) => {
-        setNftList(nfts.filter(nft => {
+        setNftList([...nfts].filter(nft => {
             return nft.name.toLowerCase().includes(searchQuery)
         }))
     }
@@ -18,7 +18,7 @@ function NftListContainer({ nfts, user, watchlist }) {
 
     return (
         <div id="nft-list-container">
-            <h1>Exchange</h1>
+            {/* <h1>Exchange</h1> */}
             <Search filterNfts={filterNfts} />
             {renderedNftList}
         </div>

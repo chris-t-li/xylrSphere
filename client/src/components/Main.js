@@ -6,6 +6,7 @@ import Profile from "./Profile";
 import Watchlist from "./Watchlist";
 import Wallet from "./Wallet";
 import Portfolio from "./Portfolio";
+import NftMain from "./NftMain";
 import Signup from "./Signup";
 import NoMatch from "./NoMatch";
 
@@ -57,11 +58,11 @@ function Main({ user, setUser }) {
                 <Route path="/watchlist" element={<Watchlist
                     user={user}
                     watchlist={watchlist}
-
                     reFetch={reFetch}
                     setReFetch={setReFetch}
                     fetchWatchlist={fetchWatchlist}
                 />} />
+                <Route path="/nftmain" element={<NftMain />} />
                 <Route exact path="/wallet" element={<Wallet user={user} />} >
 
                 </Route>

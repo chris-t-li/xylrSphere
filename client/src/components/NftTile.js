@@ -44,10 +44,15 @@ function NftTile({ nft, user, watchlist }) {
                 width: "18rem",
                 // height: "31rem",
                 display: "inline-block",
-                margin: "2%",
+                margin: "1.75%",
+
             }}
             onClick={showNftDetails}>
-            <img class="card-img-top" src={nft.image_url} alt="nft icon" />
+            <div style={{ height: "18em", overflow: "hidden" }}>
+                <img class="card-img-top" src={nft.image_url} alt="nft icon"
+                    style={{ transition: "transform .5s ease" }}
+                />
+            </div>
             <div class="card-body">
                 <h5 class="card-title">{nft.name}</h5>
                 <span class="card-text">{"✦".repeat(nft.rarity)}</span>
