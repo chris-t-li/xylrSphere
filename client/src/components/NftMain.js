@@ -1,35 +1,20 @@
 import { useEffect, useState } from "react";
-import LineChart from "./LineChart";
+import { useParams } from "react-router-dom";
+import NftDetails from "./NftDetails";
 
-function NftMain() {
-    const [priceData, setPriceData] = useState([]);
-    const [timeData, setTimeData] = useState([]);
 
-    // Brute Force Price Generator Request
-    useEffect(() => {
-        const intervalChart = setInterval(() => {
-            fetch("/pricings", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    run: true
-                })
-            })
-                .then(r => r.json())
-                .then(priceData => {
-                    console.table("autofetch is still running..", priceData);
-                    setTimeData(priceData.map(p => p.price_time));
-                    setPriceData(priceData.map(p => p.price_nft));
-                })
-        }, 1000)
+function NftMain({ nfts }) {
+    const { nft_id } = useParams();
+    const [selectedNft, setSelectedNft] = useState({});
 
-        return (() => clearInterval(intervalChart))
-    }, [])
+    // useEffect(() => {
+    //     console.log(nfts.filter(nft => nft.id === nft_id))
+    //     setSelectedNft(nfts.filter(nft => nft.id === nft_id))
+    // }, [nft_id])
 
     return (
-        <div style={{ marginLeft: "200px" }}>
-            <h4>NFT Price Chart</h4>
-            <LineChart priceData={priceData} timeData={timeData} />
+        <div style={{ marginLeft: "50px" }}>
+            <NftDetails />
         </div>
     )
 }

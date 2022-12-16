@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import NftTile from "./NftTile";
 import Search from "./Search";
+import NftDetails from "./NftDetails";
 
 function NftListContainer({ nfts, user, watchlist }) {
     const [nftList, setNftList] = useState([]);
@@ -21,6 +22,7 @@ function NftListContainer({ nfts, user, watchlist }) {
             {/* <h1>Exchange</h1> */}
             <Search filterNfts={filterNfts} />
             {renderedNftList}
+            <NftDetails />
         </div>
     )
 }

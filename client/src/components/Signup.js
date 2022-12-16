@@ -37,7 +37,7 @@ function Signup({ setUser }) {
                         passwordConfirm: "",
                         avatar_url: ""
                     })
-                    navigate("/home");
+                    navigate("/nfts");
                 })
                 .catch(e => console.error(e))
         }

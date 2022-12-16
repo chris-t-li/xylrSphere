@@ -3,7 +3,7 @@ import { Chart } from 'chart.js/auto'
 import { Line } from 'react-chartjs-2';
 
 function LineChart({ priceData, timeData }) {
-    console.log(Chart)
+    // console.log(Chart)
     const data = {
         labels: timeData,
         datasets: [

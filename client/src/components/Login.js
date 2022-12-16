@@ -22,7 +22,7 @@ function Login({ user, setUser }) {
                     r.json().then(user => {
                         setLoginData({ username: "", password: "" })
                         setUser(user)
-                        navigate("/home")
+                        navigate("/nfts")
                     })
                 } else {
                     alert("Invalid Signin Details")
@@ -56,7 +56,6 @@ function Login({ user, setUser }) {
                 }}>
                 <h3 style={{ color: "white", margin: "10% 0" }}>Login Page</h3>
                 <Form.Group>
-                    {/* <Form.Label style={{ color: "lightgrey" }}>User</Form.Label> */}
                     <Form.Control
                         type="text" placeholder="username" name="username"
                         onChange={handleChange}
@@ -71,7 +70,6 @@ function Login({ user, setUser }) {
                 </Form.Group>
 
                 <Form.Group>
-                    {/* <Form.Label style={{ color: "lightgrey" }}>Password</Form.Label> */}
                     <Form.Control
                         type="password" placeholder="Password" name="password"
                         onChange={handleChange}
@@ -90,13 +88,6 @@ function Login({ user, setUser }) {
                     className="btn btn-outline-light"
                 >Login</button>
             </Form>
-            {/* <form onSubmit={handleLogin}>
-                <input type="text" name="username" placeholder="username" onChange={handleChange} value={loginData.username} />
-                <br />
-                <input type="password" name="password" placeholder="password" onChange={handleChange} value={loginData.password} />
-                <br />
-                <input type="submit" name="login" value="login" />
-            </form> */}
         </div >
     )
 }

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function NftTile({ nft, user, watchlist }) {
     const [isOnWatchList, setIsOnWatchList] = useState();
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     useEffect(() => {
         function isWatchList(nftParam) {
@@ -28,14 +28,13 @@ function NftTile({ nft, user, watchlist }) {
             })
         })
             .then(r => r.json())
-            .then(console.log)
+            // .then(console.log)
             .catch(e => console.error(e))
     }
 
     function showNftDetails() {
-        console.log("take me to this NFT")
-        // navigate(`/${nft.id}`)
-
+        // console.log("take me to this NFT")
+        navigate(`/nftmain/${nft.id}`)
     }
 
     const watchListButton = () => {
@@ -62,19 +61,22 @@ function NftTile({ nft, user, watchlist }) {
                 margin: "1.75%",
 
             }}
-            onClick={showNftDetails}>
+        >
             <div style={{ height: "18em", overflow: "hidden" }}>
-                <img className="card-img-top" src={nft.image_url} alt="nft icon"
+                <img
+                    className="card-img-top"
+                    src={nft.image_url}
+                    alt="nft icon"
                     style={{ transition: "transform .5s ease" }}
+                    onClick={showNftDetails}
                 />
             </div>
-            <div class="card-body">
+            <div className="card-body">
                 <h5 className="card-title">{nft.name}</h5>
                 <span className="card-text">{"✦".repeat(nft.rarity)}</span>
                 <p className="card-text">{nft.chain}: {nft.latest_price.price_nft.toFixed(3)}</p>
                 <p className="card-text"> Supply: {nft.supply}</p>
                 {watchListButton()}
-                {/* {!user ? null : isOnWatchList ? <button class="btn btn-outline-secondary" disabled>In Watchlist</button> : <button class="btn btn-outline-success" onClick={addToWatchListClick}>Add to Watchlist</button>} */}
             </div>
         </div>
     )
