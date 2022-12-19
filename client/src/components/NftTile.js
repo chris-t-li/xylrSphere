@@ -58,6 +58,7 @@ function NftTile({ nft, user, watchlist }) {
                 // height: "31rem",
                 display: "inline-block",
                 margin: "1.75%",
+                boxShadow: "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px"
 
             }}
         >
@@ -68,6 +69,7 @@ function NftTile({ nft, user, watchlist }) {
                     alt="nft icon"
                     style={{ transition: "transform .5s ease" }}
                     onClick={showNftDetails}
+
                 />
             </div>
             <div className="card-body">
