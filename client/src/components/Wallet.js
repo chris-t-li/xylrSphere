@@ -2,11 +2,17 @@ import { useState, useEffect } from "react";
 import WalletTable from "./WalletTable";
 import AddToWallet from "./AddToWallet"
 
-function Wallet({ user }) {
+
+function Wallet({ user, autoLogin, setMessage }) {
     const [walletData, setWalletData] = useState([]);
 
+    useEffect(() => autoLogin(), [])
 
     useEffect(() => {
+        if (!user) {
+            return
+        }
+
         fetch(`/wallets/${user.id}`)
             .then(r => {
                 if (r.ok) {
@@ -21,7 +27,8 @@ function Wallet({ user }) {
         <div id="wallet-container">
             <h1>Wallet</h1>
             <WalletTable walletData={walletData} />
-            <AddToWallet />
+            <AddToWallet setMessage={setMessage} />
+
         </div>
     )
 }

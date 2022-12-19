@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # resources :wallets, only: [:index]
   # resources :coins
   # resources :portfolios
-  resources :nfts, only: [:index]
+  resources :nfts, only: [:index, :show]
   resources :users, only: [:show, :create, :destroy]
 
   # User Auth routes

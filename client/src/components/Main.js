@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, useParams, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import NftListContainer from "./NftListContainer";
 import Login from "./Login";
 import Profile from "./Profile";
@@ -10,13 +10,12 @@ import NftMain from "./NftMain";
 import Signup from "./Signup";
 import NoMatch from "./NoMatch";
 import NftDetails from "./NftDetails";
+import PaymentStatus from "./PaymentStatus";
 
-function Main({ user, setUser }) {
+function Main({ user, setUser, autoLogin }) {
     const [nfts, setNFTs] = useState([]);
     const [watchlist, setWatchlist] = useState([]);
     const [reFetch, setReFetch] = useState(false);
-    let { nft_id } = useParams();
-
 
     useEffect(() => {
         fetch("/nfts")
@@ -44,11 +43,11 @@ function Main({ user, setUser }) {
 
     return (
         <main>
-            <nav>
-                {/* These NAV links should be attached to the Images in each NFT Tile */}
+            {/* <nav>
+                These NAV links should be attached to the Images in each NFT Tile
                 <Link to="/nfts">Exchange</Link>
                 <Link to="/watchlist">Watchlist</Link>
-            </nav>
+            </nav> */}
 
             <Routes>
                 <Route path="/nfts" element={
@@ -58,17 +57,9 @@ function Main({ user, setUser }) {
                         setUser={setUser}
                         watchlist={watchlist}
                     />} >
-                    {/* <Route index element={<NftListContainer
-                        nfts={nfts}
-                        user={user}
-                        setUser={setUser}
-                        watchlist={watchlist}
-                    />} />
-                    <Route path=":nft_id" element={<NftDetails />} /> */}
-
                 </Route>
 
-                <Route path="/nftmain" element={<NftMain nfts={nfts} />} >
+                <Route path="/nftmain" element={<NftMain />} >
                     <Route index element={<NftMain nfts={nfts} />} />
                     <Route path=":nft_id" element={<NftDetails />} />
                 </Route>
@@ -83,11 +74,10 @@ function Main({ user, setUser }) {
                     setReFetch={setReFetch}
                     fetchWatchlist={fetchWatchlist}
                 />} />
-                <Route exact path="/wallet" element={<Wallet user={user} />} >
-
-                </Route>
+                <Route exact path="/wallet" element={<Wallet user={user} autoLogin={autoLogin} />} />
                 <Route path="/portfolio" element={<Portfolio />} />
                 <Route path="/*" element={<NoMatch />} />
+                <Route path="paymentstatus" element={<PaymentStatus />} />
             </Routes>
 
         </main>

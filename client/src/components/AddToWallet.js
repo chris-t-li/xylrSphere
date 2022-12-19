@@ -1,13 +1,16 @@
 import { useState } from "react";
-import { Elements } from '@stripe/react-stripe-js';
+import { PaymentElement, Elements, useStripe, useElements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import CheckoutForm from "./CheckoutForm";
+import PaymentStatus from "./PaymentStatus";
 
 const myModule = require("../key")
 const key = myModule.key
 const stripePromise = loadStripe(key);
 
-function AddToWallet() {
+function AddToWallet({ setMessage }) {
+
+
     const [options, setOptions] = useState();
 
     function handleSubmit(e) {
@@ -36,7 +39,9 @@ function AddToWallet() {
             </form>
             {options ?
                 <Elements stripe={stripePromise} options={options}>
-                    <CheckoutForm />
+                    <CheckoutForm setMessage={setMessage} />
+                    <PaymentElement />
+                    {/* <PaymentStatus /> */}
                 </Elements> : null}
 
         </div>

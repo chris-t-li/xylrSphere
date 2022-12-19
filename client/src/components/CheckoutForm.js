@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
-// import PaymentStatus from './PaymentStatus';
+import PaymentStatus from './PaymentStatus';
 
 function CheckoutForm() {
     const stripe = useStripe();
@@ -8,7 +8,6 @@ function CheckoutForm() {
     const [message, setMessage] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-    // const [showPaymentStatus, setShowPaymentStatus] = useState(false);
 
     useEffect(() => {
         if (!stripe) {
@@ -55,11 +54,9 @@ function CheckoutForm() {
         const { error } = await stripe.confirmPayment({
             elements,
             confirmParams: {
-                return_url: "http://localhost:4000/wallet/",
+                return_url: "http://localhost:4000/paymentstatus",
             },
         })
-
-        // setShowPaymentStatus(true)
 
         if (error) {
             setErrorMessage(error.message);
@@ -73,13 +70,9 @@ function CheckoutForm() {
     return (
         <div>
             <form onSubmit={submitPayment}>
-                <PaymentElement />
                 <button disabled={isLoading || !stripe || !elements}>Submit</button>
                 {errorMessage && <div>{errorMessage}</div>}
             </form>
-            {message && <p>{message}</p>}
-            {/* {showPaymentStatus ? <PaymentStatus /> : null} */}
-
         </div>
     )
 }

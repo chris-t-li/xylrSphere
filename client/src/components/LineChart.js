@@ -56,15 +56,22 @@ function LineChart({ priceData, timeData }) {
             legend: {
                 position: 'top',
             },
-            title: {
-                display: true,
-                text: 'Chart.js Line Chart',
-            },
+            // title: {
+            //     display: true,
+            //     text: 'Chart.js Line Chart',
+            // },
         },
     };
 
     return (
-        <div id="nft-price-chart">
+        <div id="nft-price-chart"
+            style={{
+                height: "500px",
+                display: "inline-block",
+                position: "absolute",
+                left: "43em",
+                top: "6em"
+            }}>
             <Line
                 data={data}
                 options={options}

@@ -24,7 +24,7 @@ function App() {
   return (
     <>
       <SideNavBar user={user} setUser={setUser} />
-      <Main user={user} setUser={setUser} />
+      <Main user={user} setUser={setUser} autoLogin={autoLogin} />
     </>
   )
 

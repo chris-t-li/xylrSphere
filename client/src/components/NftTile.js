@@ -33,7 +33,6 @@ function NftTile({ nft, user, watchlist }) {
     }
 
     function showNftDetails() {
-        // console.log("take me to this NFT")
         navigate(`/nftmain/${nft.id}`)
     }
 
