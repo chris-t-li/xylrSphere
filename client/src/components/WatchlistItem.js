@@ -18,16 +18,25 @@ function WatchlistItem({ nft, setReFetch }) {
     }
 
     return (
-        <div className="watchlist-row">
 
-            <img src={nft.nft.image_url} alt="nft icon" className="watchlist-icon" />
-            <h5>{nft.nft.name}</h5>
-            <p>{nft.nft.chain}</p>
-            {/* Price */}
-            {/* Small Chart [stretch]*/}
-            <button onClick={removeFromWatchlist}>🗑</button>
-            <button >☰</button>
-        </div>
+        <tr>
+            <td><p>1</p></td>
+            <td><img
+                src={nft.nft.image_url}
+                alt="nft icon"
+                className="watchlist-icon"
+
+            /></td>
+            <td><h5>{nft.nft.name}</h5></td>
+            <td><p>{nft.nft.chain}</p></td>
+            <td>{/* Price */}</td>
+            <td>{"Volume"}</td>
+            <td>Change</td>
+            <td>{/* Small Chart [stretch]*/}</td>
+            <td><button >☰</button></td>
+            <td><button onClick={removeFromWatchlist}>🗑</button></td>
+        </tr >
+
     )
 }
 

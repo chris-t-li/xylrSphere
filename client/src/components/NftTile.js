@@ -45,7 +45,11 @@ function NftTile({ nft, user, watchlist }) {
             )
         } else {
             return (
-                <button className="btn btn-outline-success" onClick={addToWatchListClick}>Add to Watchlist</button>
+                <button
+                    className="btn btn-outline-success"
+                    style={{ boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px" }}
+                    onClick={addToWatchListClick}
+                >Add to Watchlist</button>
             )
         }
     }

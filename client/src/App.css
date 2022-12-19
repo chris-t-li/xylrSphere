@@ -94,7 +94,6 @@ button.btn-outline-secondary {
 
 #wallet-container,
 #signup-container,
-#watchlist-container,
 #login-container {
   margin-left: 200px;
 }
@@ -119,15 +118,22 @@ span {
 }
 
 .watchlist-icon {
+  height: 50px;
+  width: 50px;
+  transition: "transform 0.5s ease";
+}
+
+.watchlist-icon:hover {
+
   height: 75px;
   width: 75px;
 }
 
+
 .watchlist-row {
   max-height: 125px;
-  min-width: 97.5vw;
   display: inline-block;
-  border: 1px solid black
+
 }
 
 .watchlist-row * {
