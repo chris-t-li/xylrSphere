@@ -62,8 +62,8 @@ function NftTile({ nft, user, watchlist }) {
                 // height: "31rem",
                 display: "inline-block",
                 margin: "1.75%",
-                boxShadow: "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px"
-
+                borderRadius: "8px",
+                boxShadow: "rgba(0, 0, 0, 0.3) 0px 7px 15px, rgba(0, 0, 0, 0.22) 0px 8px 10px"
             }}
         >
             <div style={{ height: "18em", overflow: "hidden" }}>

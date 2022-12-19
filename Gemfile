@@ -57,3 +57,5 @@ gem 'faker'
 gem 'rufus-scheduler'
 
 gem "stripe", "~> 8.0"
+
+gem 'whenever', require: false

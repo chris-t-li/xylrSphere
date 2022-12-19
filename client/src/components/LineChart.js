@@ -16,6 +16,10 @@ function LineChart({ priceData, timeData }) {
                 data: priceData,
                 borderColor: randColor(),
                 backgroundColor: randColor(),
+                fill: {
+                    target: 'origin',
+                    below: randColor()
+                }
             }
         ],
     };

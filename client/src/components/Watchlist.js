@@ -3,7 +3,7 @@ import Table from "react-bootstrap/table";
 import WatchlistItem from "./WatchlistItem";
 
 function Watchlist({ user, watchlist, reFetch, setReFetch, fetchWatchlist }) {
-    useEffect(() => fetchWatchlist(), [user, reFetch])
+    // useEffect(() => fetchWatchlist(), [user, reFetch])
 
     const renderWatchlist = watchlist.map(nft => {
         return <WatchlistItem
