@@ -1,8 +1,17 @@
 class PricingsController < ApplicationController
-    # POST /pricings
+    # POST /pricings/:nft_id
     def create
-        price = Pricing.last.price_nft + rand(-0.05..0.05)
-        Pricing.create(nft_id: 1, coin_id: 1, price_nft:price)
-        render json: Nft.first.pricings.last(50), status: :ok
+
+        nft = Nft.find(params[:nft_id])
+        
+        price = nft.pricings.last.price_nft
+
+        new_price = price * Math.exp(rand(-0.005..0.005))
+        
+        chain = Coin.find_by(ticker: nft.chain)
+
+        Pricing.create(nft_id: nft.id, coin_id: chain.id, price_nft: new_price)
+        
+        render json: nft.pricings.last(50), status: :ok
     end
 end

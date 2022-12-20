@@ -59,3 +59,5 @@ gem 'rufus-scheduler'
 gem "stripe", "~> 8.0"
 
 gem 'whenever', require: false
+
+gem 'distribution', '~> 0.7.3'

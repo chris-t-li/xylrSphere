@@ -1,5 +1,5 @@
 namespace :coin do
-  desc "saying hi to cron"
+  desc "fetch Market Coin Cap every 30 mins for latest crypto currency prices and updates coin table"
   task :get_coin_prices => [ :environment ] do
     ## Set up URL for Fetch Request ###
     url = URI("https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest")
@@ -26,8 +26,7 @@ namespace :coin do
         updated_at: 
             latest_crypto_price_data["data"].find{|c| c["symbol"] == "ETH"}["last_updated"]
     )
-
-    puts eth_coin
+    puts "Updated ETH: #{eth_coin.updated_at}"
 
     bnb_coin = Coin.find_by(ticker: "BNB")
 
@@ -38,7 +37,7 @@ namespace :coin do
             latest_crypto_price_data["data"].find{|c| c["symbol"] == "BNB"}["last_updated"]
     )
 
-    puts bnb_coin
+    puts "Updated BNB: #{bnb_coin.updated_at}"
     
     sol_coin = Coin.find_by(ticker: "SOL")
     sol_coin.update(
@@ -48,7 +47,7 @@ namespace :coin do
             latest_crypto_price_data["data"].find{|c| c["symbol"] == "SOL"}["last_updated"]
     )
 
-    puts sol_coin
+    puts "Updated SOL: #{sol_coin.updated_at}"
 
     avax_coin = Coin.find_by(ticker: "AVAX")
     avax_coin.update(
@@ -57,6 +56,9 @@ namespace :coin do
         updated_at: 
             latest_crypto_price_data["data"].find{|c| c["symbol"] == "AVAX"}["last_updated"]
     )
+
+    puts "Updated AVAX: #{avax_coin.updated_at}"
+
   end
 
 end

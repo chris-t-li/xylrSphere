@@ -24,7 +24,6 @@ function LineChart({ priceData, timeData }) {
         ],
     };
 
-
     // Line Chart Animation: https://www.chartjs.org/docs/latest/samples/animations/progressive-line.html
     const totalDuration = 2000;
     const delayBetweenPoints = totalDuration / priceData.length;

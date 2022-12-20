@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :pricings, only: [:create]
+  # resources :pricings, only: [:create]
   # resources :wallets, only: [:index]
   # resources :coins, only: [:show]
   # resources :portfolios
@@ -24,4 +24,6 @@ Rails.application.routes.draw do
 
   patch "/wallets", to: "wallets#add_to_wallet"
   
+  # Pricings
+  post "/pricings/:nft_id", to: "pricings#create"
 end

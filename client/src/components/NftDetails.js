@@ -24,7 +24,7 @@ function NftDetails() {
     // Brute Force Price Generator Request
     useEffect(() => {
         const intervalChart = setInterval(() => {
-            fetch("/pricings", {
+            fetch(`/pricings/${nft_id}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
