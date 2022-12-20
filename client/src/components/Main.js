@@ -74,7 +74,7 @@ function Main({ user, setUser, autoLogin }) {
                     setReFetch={setReFetch}
                     fetchWatchlist={fetchWatchlist}
                 />} />
-                <Route exact path="/wallet" element={<Wallet user={user} autoLogin={autoLogin} />} />
+                <Route path="/wallet" element={<Wallet user={user} autoLogin={autoLogin} />} />
                 <Route path="/portfolio" element={<Portfolio />} />
                 <Route path="/*" element={<NoMatch />} />
                 <Route path="paymentstatus" element={<PaymentStatus />} />

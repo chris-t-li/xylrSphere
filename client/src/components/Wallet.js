@@ -3,8 +3,9 @@ import WalletTable from "./WalletTable";
 import AddToWallet from "./AddToWallet"
 
 
-function Wallet({ user, autoLogin, setMessage }) {
+function Wallet({ user, autoLogin }) {
     const [walletData, setWalletData] = useState([]);
+    const [walletUpdate, setWalletUpdate] = useState(false);
 
     useEffect(() => autoLogin(), [])
 
@@ -21,13 +22,13 @@ function Wallet({ user, autoLogin, setMessage }) {
                     })
                 }
             })
-    }, [user])
+    }, [user, walletUpdate])
 
     return (
         <div id="wallet-container">
             <h1>Wallet</h1>
-            <WalletTable walletData={walletData} />
-            <AddToWallet setMessage={setMessage} />
+            <WalletTable walletData={walletData} walletUpdate={walletUpdate} />
+            <AddToWallet user={user} autoLogin={autoLogin} setWalletUpdate={setWalletUpdate} />
 
         </div>
     )

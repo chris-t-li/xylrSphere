@@ -5,13 +5,14 @@ import CheckoutForm from "./CheckoutForm";
 
 const myModule = require("../key");
 const key = myModule.key;
-const coinKey = myModule.coinkey;
+// const coinKey = myModule.coinkey;
 const stripePromise = loadStripe(key);
 
-function AddToWallet({ setMessage }) {
+function AddToWallet({ user, autoLogin, setWalletUpdate }) {
     const [addToWalletData, setAddToWalletData] = useState({
         coin: "",
-        qty: 0
+        qty: 0,
+        price: 0
     })
     // Stripe Options Config
     const [options, setOptions] = useState();
@@ -22,7 +23,11 @@ function AddToWallet({ setMessage }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        fetch("/secret")
+        fetch("/secret", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(addToWalletData)
+        })
             .then(r => {
                 if (r.ok) {
                     r.json().then(res => {
@@ -37,34 +42,44 @@ function AddToWallet({ setMessage }) {
     }
 
     function getCoinPrice() {
-        console.log("fetch coin price")
-        fetch("https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest", {
-            headers: {
-                "X-CMC_PRO_API_KEY": coinKey
-            }
-        })
+        // console.log("fetch coin price")
+        fetch(`/coin?ticker=${addToWalletData.coin}`)
             .then(r => r.json())
-            .then(console.log)
+            .then(priceData => {
+                console.log(priceData);
+                setAddToWalletData({ ...addToWalletData, price: priceData.last_price });
+            })
     }
 
     return (
         <div id="stripe-checkout">
-            <h2>Add to Wallet</h2>
+            <h2>Top Up</h2>
             <form onSubmit={handleSubmit}>
+                <input type="number" name="qty" min='0' value={addToWalletData.qty} placeholder="Qty" onChange={handleChange}></input>
                 <select name="coin" value={addToWalletData.coin} onChange={handleChange}>
+                    <option></option>
                     <option>ETH</option>
                     <option>BNB</option>
                     <option>SOL</option>
                 </select>
-                <input type="number" name="qty" min='0' value={addToWalletData.qty} placeholder="Qty" onChange={handleChange}></input>
                 <button onClick={getCoinPrice}>Get Coin</button>
-                <input type="submit" value="Buy Coins"></input>
+                {/* <input type="submit" value="Buy Coins"></input> */}
             </form>
+            <p>+5 USD transaction fee</p>
+            <p>Last Price: {addToWalletData.price === 0 ? null : addToWalletData.price.toFixed(2)}</p>
+            <p>Total Cost: {(addToWalletData.price * addToWalletData.qty + 5).toFixed(2)}</p>
             {
                 options ?
                     <Elements stripe={stripePromise} options={options}>
-                        <CheckoutForm setMessage={setMessage} />
                         <PaymentElement />
+                        <CheckoutForm
+                            addToWalletData={addToWalletData}
+                            user={user}
+                            autoLogin={autoLogin}
+                            setOptions={setOptions}
+                            setWalletUpdate={setWalletUpdate} setAddToWalletData={setAddToWalletData}
+                        />
+
                     </Elements> : null
             }
 

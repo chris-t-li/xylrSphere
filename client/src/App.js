@@ -5,6 +5,7 @@ import SideNavBar from './components/SideNavBar';
 
 function App() {
   const [user, setUser] = useState()
+
   useEffect(() => autoLogin(), []);
 
   function autoLogin() {

@@ -24,7 +24,7 @@ namespace :coin do
         last_price: 
             latest_crypto_price_data["data"].find{|c| c["symbol"] == "ETH"}["quote"]["USD"]["price"] ,
         updated_at: 
-            latest_crypto_price_data["data"].find{|c| c["symbol"] == "ETH"}["last_updated"] ,
+            latest_crypto_price_data["data"].find{|c| c["symbol"] == "ETH"}["last_updated"]
     )
 
     puts eth_coin
@@ -35,7 +35,7 @@ namespace :coin do
         last_price: 
             latest_crypto_price_data["data"].find{|c| c["symbol"] == "BNB"}["quote"]["USD"]["price"] ,
         updated_at: 
-            latest_crypto_price_data["data"].find{|c| c["symbol"] == "BNB"}["last_updated"] ,
+            latest_crypto_price_data["data"].find{|c| c["symbol"] == "BNB"}["last_updated"]
     )
 
     puts bnb_coin
@@ -45,10 +45,18 @@ namespace :coin do
         last_price: 
             latest_crypto_price_data["data"].find{|c| c["symbol"] == "SOL"}["quote"]["USD"]["price"] ,
         updated_at: 
-            latest_crypto_price_data["data"].find{|c| c["symbol"] == "SOL"}["last_updated"] ,
+            latest_crypto_price_data["data"].find{|c| c["symbol"] == "SOL"}["last_updated"]
     )
 
     puts sol_coin
+
+    avax_coin = Coin.find_by(ticker: "AVAX")
+    avax_coin.update(
+        last_price: 
+            latest_crypto_price_data["data"].find{|c| c["symbol"] == "AVAX"}["quote"]["USD"]["price"] ,
+        updated_at: 
+            latest_crypto_price_data["data"].find{|c| c["symbol"] == "AVAX"}["last_updated"]
+    )
   end
 
 end

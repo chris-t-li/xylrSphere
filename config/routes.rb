@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :pricings, only: [:create]
   # resources :wallets, only: [:index]
-  # resources :coins
+  # resources :coins, only: [:show]
   # resources :portfolios
   resources :nfts, only: [:index, :show]
   resources :users, only: [:show, :create, :destroy]
@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   # Wallet Routes
   get "/wallets/:user_id", to: "wallets#show_my_wallet"
 
-  get "/secret", to: "payment_process#process_payment" 
+  post "/secret", to: "payment_process#process_payment" 
+  get "/coin", to: "coins#show"
+
+  patch "/wallets", to: "wallets#add_to_wallet"
   
 end

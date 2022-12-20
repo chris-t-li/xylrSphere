@@ -8,7 +8,7 @@ function WalletTable({ walletData }) {
                 <td>{entry.coin.ticker}</td>
                 <td>"Icon"</td>
                 <td>{entry.coin.name}</td>
-                <td>{entry.coin.last_price}</td>
+                <td>{entry.coin.last_price.toFixed(2)}</td>
                 <td>{entry.quantity}</td>
                 <td>{(entry.coin.last_price * entry.quantity).toFixed(2)}</td>
             </tr>
@@ -20,6 +20,7 @@ function WalletTable({ walletData }) {
             <table>
                 <thead>
                     <tr>
+                        <th>Add</th>
                         <th>Ticker</th>
                         <th>Icon</th>
                         <th>Coin</th>
