@@ -25,5 +25,9 @@ Rails.application.routes.draw do
   patch "/wallets", to: "wallets#add_to_wallet"
   
   # Pricings
+  get "/pricings/:nft_id", to: "pricings#show"
   post "/pricings/:nft_id", to: "pricings#create"
+
+  # Purchase routes
+  post "portfolios/:nft_id", to: "portfolios#purchase_nft"
 end

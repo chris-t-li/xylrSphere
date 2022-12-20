@@ -22,4 +22,34 @@ class PortfoliosController < ApplicationController
         portfolio.update!(watchlist: params[:watchlist])
         render json: portfolio, status: :accepted
     end
+
+    # POST /portfolios/:nft_id
+    def purchase_nft
+        # gets latest price for NFT
+        nft = Nft.find(params[:nft_id])
+        coin = Coin.find_by(ticker: nft.chain)
+        latest_price = nft.pricings.last.price_nft
+        user = User.find(session[:user_id])
+        user_wallet = Wallet.find_by(user: user, coin: coin)
+        # checks if user has enough funds in wallet
+        if user_wallet.quantity >= latest_price
+            # makes purchase if sufficient: update Portfolio instance to show ownership. Update Wallet to show reduction in balance
+            ownership = Portfolio.find_or_create_by(user: user, nft: nft)
+            ownership.update(ownership: true)
+            nft.update(on_market: false)
+            user_wallet.update(quantity: user_wallet.quantity-latest_price)
+
+            render json: {
+                message: "Purchase Successful!", 
+                price: latest_price,
+                remaining_coin_in_wallet: user_wallet.quantity,
+                ownership: ownership,
+                wallet: user_wallet
+                }, 
+            status: :accepted
+        else
+            # error code if insufficient
+            render json: {error: "Insufficient Coins. Please top up!"}, status: :unprocessable_entity
+        end
+    end
 end

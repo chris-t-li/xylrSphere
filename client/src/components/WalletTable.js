@@ -9,7 +9,7 @@ function WalletTable({ walletData }) {
                 <td>"Icon"</td>
                 <td>{entry.coin.name}</td>
                 <td>{entry.coin.last_price.toFixed(2)}</td>
-                <td>{entry.quantity}</td>
+                <td>{entry.quantity.toFixed(4)}</td>
                 <td>{(entry.coin.last_price * entry.quantity).toFixed(2)}</td>
             </tr>
         )

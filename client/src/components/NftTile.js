@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 function NftTile({ nft, user, watchlist }) {
     const [isOnWatchList, setIsOnWatchList] = useState();
+    const [isOnMarket, setIsOnMarket] = useState();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -12,6 +13,13 @@ function NftTile({ nft, user, watchlist }) {
         if (watchlist.find(isWatchList)) {
             setIsOnWatchList(true)
         }
+
+        if (nft.on_market) {
+            setIsOnMarket(true);
+        } else if (!nft.on_market) {
+            setIsOnMarket(false);
+        }
+
     }, [watchlist])
 
     function addToWatchListClick() {
@@ -54,6 +62,24 @@ function NftTile({ nft, user, watchlist }) {
         }
     }
 
+    const onMarketButton = () => {
+        if (!user) {
+            return null
+        } else if (isOnMarket) {
+            return (
+                <button className="btn btn-success"
+                    style={{ position: "relative", left: "12.5em", top: "-29em" }}
+                    onClick={showNftDetails}>BUY</button>
+            )
+        } else {
+            return (
+                <button className="btn btn-danger"
+                    style={{ position: "relative", left: "12em", top: "-29em" }}
+                    disabled>SOLD</button>
+            )
+        }
+    }
+
     return (
         <div
             className="card"
@@ -76,12 +102,13 @@ function NftTile({ nft, user, watchlist }) {
 
                 />
             </div>
-            <div className="card-body">
+            <div className="card-body" style={{ height: "13em" }}>
                 <h5 className="card-title">{nft.name}</h5>
                 <span className="card-text">{"✦".repeat(nft.rarity)}</span>
                 <p className="card-text">{nft.chain}: {nft.latest_price.price_nft.toFixed(3)}</p>
                 <p className="card-text"> Supply: {nft.supply}</p>
                 {watchListButton()}
+                {onMarketButton()}
             </div>
         </div>
     )

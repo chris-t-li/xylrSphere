@@ -28,6 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_13_023053) do
     t.integer "rarity"
     t.integer "supply"
     t.string "chain"
+    t.boolean "on_market"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -37,7 +38,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_13_023053) do
     t.bigint "nft_id", null: false
     t.boolean "watchlist"
     t.boolean "ownership"
-    t.boolean "on_market"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["nft_id"], name: "index_portfolios_on_nft_id"

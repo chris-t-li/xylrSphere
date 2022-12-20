@@ -55,7 +55,7 @@ function AddToWallet({ user, autoLogin, setWalletUpdate }) {
         <div id="stripe-checkout">
             <h2>Top Up</h2>
             <form onSubmit={handleSubmit}>
-                <input type="number" name="qty" min='0' value={addToWalletData.qty} placeholder="Qty" onChange={handleChange}></input>
+                <input type="decimal" name="qty" min='0' value={addToWalletData.qty} placeholder="Qty" onChange={handleChange}></input>
                 <select name="coin" value={addToWalletData.coin} onChange={handleChange}>
                     <option></option>
                     <option>ETH</option>

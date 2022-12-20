@@ -1,5 +1,5 @@
 class NftSerializer < ActiveModel::Serializer
-  attributes :id, :name, :image_url, :rarity, :supply, :chain, :latest_price
+  attributes :id, :name, :image_url, :rarity, :supply, :chain, :on_market, :latest_price
   has_many :pricings
 
   def latest_price

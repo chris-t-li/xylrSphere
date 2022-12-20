@@ -5,7 +5,6 @@ class CreatePortfolios < ActiveRecord::Migration[7.0]
       t.belongs_to :nft, null: false, foreign_key: true
       t.boolean :watchlist
       t.boolean :ownership
-      t.boolean :on_market
 
       t.timestamps
     end
