@@ -7,8 +7,10 @@ function NftDetails({ setReFetch }) {
     const [nftData, setNftData] = useState({});
     const [priceData, setPriceData] = useState([]);
     const [timeData, setTimeData] = useState([]);
+    const [trimmedPriceData, setTrimmedPriceData] = useState([]);
+    const [trimmedTimeData, setTrimmedTimeData] = useState([]);
     const [processBuyMessage, setProcessBuyMessage] = useState({});
-    // const [purchasePriceData, setPurchasePriceData] = useState({});
+    const [fetchMorePriceData, setFetchMorePriceData] = useState(false);
 
     useEffect(() => {
         fetch(`/nfts/${nft_id}`)
@@ -22,9 +24,7 @@ function NftDetails({ setReFetch }) {
             })
     }, [processBuyMessage])
 
-    // Brute Force Price Generator Request
     useEffect(() => {
-        // const intervalChart = setInterval(() => {
         fetch(`/pricings/${nft_id}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -36,10 +36,28 @@ function NftDetails({ setReFetch }) {
                 setTimeData(priceData.map(p => p.price_time));
                 setPriceData(priceData.map(p => p.price_nft));
             })
-        // }, 1000)
+    }, [fetchMorePriceData])
 
-        // return (() => clearInterval(intervalChart))
-    }, [])
+    useEffect(() => {
+        // Start at index = 0;
+        let index = 0;
+        const intervalChart = setInterval(() => {
+            // if remaining elements in the priceData array is <=10 (priceData length - index <= 10), run a new fetch
+            if (!priceData) {
+                return
+            } else if (priceData.length - index - 50 <= 10) {
+                setFetchMorePriceData(value => !value)
+            } else {
+                // setTrimmedTimeData(index to index + 50)
+                setTrimmedTimeData(timeData.slice(index, index + 50));
+                setTrimmedPriceData(priceData.slice(index, index + 50));
+                index += 1;
+            }
+            // wait 1 sec
+        }, 1000)
+
+        return (() => clearInterval(intervalChart))
+    }, [priceData])
 
     const processBuy = () => {
 
@@ -91,7 +109,7 @@ function NftDetails({ setReFetch }) {
 
                     </div>
 
-                    <LineChart priceData={priceData} timeData={timeData} />
+                    <LineChart trimmedPriceData={trimmedPriceData} trimmedTimeData={trimmedTimeData} />
                 </div>
             )
         }

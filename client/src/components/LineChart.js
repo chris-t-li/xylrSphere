@@ -2,18 +2,18 @@ import React from 'react';
 import { Chart } from 'chart.js/auto'
 import { Line } from 'react-chartjs-2';
 
-function LineChart({ priceData, timeData }) {
+function LineChart({ trimmedPriceData, trimmedTimeData }) {
     const randColor = () => {
         const r = Math.floor(256 * Math.random()), g = Math.floor(256 * Math.random()), b = Math.floor(256 * Math.random())
         return `rgb(${r}. ${g}, ${b})`
     }
     // console.log(Chart)
     const data = {
-        labels: timeData,
+        labels: trimmedTimeData,
         datasets: [
             {
                 label: 'NFT Price Chart for [...]',
-                data: priceData,
+                data: trimmedPriceData,
                 borderColor: randColor(),
                 backgroundColor: randColor(),
                 fill: {
@@ -26,7 +26,7 @@ function LineChart({ priceData, timeData }) {
 
     // Line Chart Animation: https://www.chartjs.org/docs/latest/samples/animations/progressive-line.html
     const totalDuration = 2000;
-    const delayBetweenPoints = totalDuration / priceData.length;
+    const delayBetweenPoints = totalDuration / trimmedPriceData.length;
     const previousY = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
     const animation = {
         x: {
