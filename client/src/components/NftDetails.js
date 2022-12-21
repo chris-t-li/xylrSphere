@@ -10,7 +10,7 @@ function NftDetails({ setReFetch }) {
     const [trimmedPriceData, setTrimmedPriceData] = useState([]);
     const [trimmedTimeData, setTrimmedTimeData] = useState([]);
     const [processBuyMessage, setProcessBuyMessage] = useState({});
-    const [fetchMorePriceData, setFetchMorePriceData] = useState(false);
+    const [fetchParams, setFetchParams] = useState({ fetch: false, fetchNum: 0 });
 
     useEffect(() => {
         fetch(`/nfts/${nft_id}`)
@@ -25,18 +25,14 @@ function NftDetails({ setReFetch }) {
     }, [processBuyMessage])
 
     useEffect(() => {
-        fetch(`/pricings/${nft_id}`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({})
-        })
+        fetch(`/pricings?nft_id=${nft_id}&fetch_num=${fetchParams.fetchNum}`)
             .then(r => r.json())
             .then(priceData => {
-                // console.table("autofetch is still running..", priceData);
+                console.table("Got more data", priceData);
                 setTimeData(priceData.map(p => p.price_time));
                 setPriceData(priceData.map(p => p.price_nft));
             })
-    }, [fetchMorePriceData])
+    }, [fetchParams])
 
     useEffect(() => {
         // Start at index = 0;
@@ -46,7 +42,7 @@ function NftDetails({ setReFetch }) {
             if (!priceData) {
                 return
             } else if (priceData.length - index - 50 <= 10) {
-                setFetchMorePriceData(value => !value)
+                setFetchParams({ ...fetchParams, fetchNum: fetchParams.fetchNum += 1 })
             } else {
                 // setTrimmedTimeData(index to index + 50)
                 setTrimmedTimeData(timeData.slice(index, index + 50));

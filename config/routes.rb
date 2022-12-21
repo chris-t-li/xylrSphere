@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   
   # Pricings
   get "/pricings/:nft_id", to: "pricings#show"
-  post "/pricings/:nft_id", to: "pricings#create"
+  get "/pricings", to: "pricings#get_prices_for_nft_details"
   get "/portfolio_pricings/:user_id", to: "pricings#get_prices_for_my_portfolio"
 
   # Purchase routes
