@@ -19,7 +19,6 @@ function Main({ user, setUser, autoLogin }) {
     const [reFetch, setReFetch] = useState(false);
 
     useEffect(() => {
-        console.log('refetching...')
         fetch("/nfts")
             .then(r => r.json())
             .then(data => setNFTs(data))

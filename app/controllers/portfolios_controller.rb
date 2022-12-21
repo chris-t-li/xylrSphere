@@ -32,6 +32,7 @@ class PortfoliosController < ApplicationController
 
     # POST /portfolios/:nft_id
     def purchase_nft
+        byebug
         # gets latest price for NFT
         nft = Nft.find(params[:nft_id])
         coin = Coin.find_by(ticker: nft.chain)

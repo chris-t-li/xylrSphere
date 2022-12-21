@@ -20,7 +20,7 @@ function NftDetails({ setReFetch }) {
                     })
                 }
             })
-    }, [])
+    }, [processBuyMessage])
 
     // Brute Force Price Generator Request
     useEffect(() => {
@@ -50,13 +50,13 @@ function NftDetails({ setReFetch }) {
             headings: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 nft_id: nft_id,
-                user_id: 1
+                // user_id: 1
             })
         })
             .then(r => {
                 if (r.ok) {
                     r.json().then(r => {
-                        console.log(r);
+                        // console.log(r);
                         setProcessBuyMessage(r);
                         setReFetch(reFetch => !reFetch)
                     })

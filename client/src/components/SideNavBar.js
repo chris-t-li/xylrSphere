@@ -21,13 +21,13 @@ function SideNavBar({ user, setUser }) {
                 <ul>
                     <li onClick={() => navigate("/nfts")}>Exchange
                     </li>
-                    <li onClick={() => navigate("/profile")}>Profile</li>
+                    {user && <li onClick={() => navigate("/profile")}>Profile</li>}
                     {user && <li onClick={() => navigate("/portfolio")}>Portfolio</li>}
                     {user && <li onClick={() => navigate("/watchlist")}>Watchlist</li>}
-                    {/* <li onClick={() => navigate("/nftmain")}>NFT Details</li> */}
-                    <li onClick={() => navigate("/wallet")}>Wallet</li>
-                    {!user && <li onClick={() => navigate("/signup")}>SignUp</li>}
+
+                    {user && <li onClick={() => navigate("/wallet")}>Wallet</li>}
                     <li onClick={handleClick}>{user ? "Logout" : "Login"}</li>
+                    {!user && <li onClick={() => navigate("/signup")}>SignUp</li>}
                 </ul>
             </nav>
         </div>
