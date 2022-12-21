@@ -1,9 +1,9 @@
 import NftDetails from "./NftDetails";
 
-function NftMain() {
+function NftMain({ setReFetch }) {
     return (
         <div style={{ marginLeft: "50px" }}>
-            <NftDetails />
+            <NftDetails setReFetch={setReFetch} />
         </div>
     )
 }

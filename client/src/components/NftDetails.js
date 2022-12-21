@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import LineChart from "./LineChart";
-// import WalletTable from "./Wallet";
-// import NftTile from "./NftTile";
 
-function NftDetails() {
+function NftDetails({ setReFetch }) {
     const { nft_id } = useParams();
     const [nftData, setNftData] = useState({});
     const [priceData, setPriceData] = useState([]);
@@ -60,23 +58,13 @@ function NftDetails() {
                     r.json().then(r => {
                         console.log(r);
                         setProcessBuyMessage(r);
+                        setReFetch(reFetch => !reFetch)
                     })
                 } else {
                     r.json().then(e => alert(e.error))
                 }
             })
     }
-
-    // let renderMessage;
-    // if (!processBuyMessage.message) {
-    //     return
-    // } else {
-    //     renderMessage = (<>
-    //         <p>{processBuyMessage.message}</p>
-    //         <p>Price Bought: {processBuyMessage.price.toFixed(5)}</p>
-    //         <p>Remaining Coin: {processBuyMessage.remaining_coin_in_wallet.toFixed(5)}</p>
-    //     </>)
-    // }
 
     const renderNftData = () => {
 
@@ -99,12 +87,12 @@ function NftDetails() {
                     <div style={{ position: "absolute", top: "32em" }}>
                         <p>Chain: {nftData.chain}</p>
                         <p>Last Price: {nftData.latest_price.price_nft.toFixed(5)}</p>
-                        <button
+                        {nftData.on_market ? <button
                             onClick={processBuy}
+                        >BUY</button> : <button disabled>SOLD</button>}
 
-                        >BUY</button>
                     </div>
-                    {/* <span>{`Price: ${nftData.latest_price.price_nft}.`}</span> */}
+
                     <LineChart priceData={priceData} timeData={timeData} />
                 </div>
             )
@@ -115,10 +103,10 @@ function NftDetails() {
     return (
         <div style={{ marginLeft: "200px", display: "inline-block", minWidth: "100vw" }}>
             {renderNftData()}
-            {/* <WalletTable /> */}
+
             {processBuyMessage.message && <div style={{ position: "absolute", top: "40em" }}>
                 <p>{processBuyMessage.message}</p>
-                <p>Price Bought: {processBuyMessage.price.toFixed(5)}</p>
+                <p>Price Bought: {processBuyMessage.purchase_price.toFixed(5)}</p>
                 <p>Remaining Coin: {processBuyMessage.remaining_coin_in_wallet.toFixed(5)}</p>
             </div>}
         </div>)

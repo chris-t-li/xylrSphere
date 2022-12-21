@@ -15,17 +15,17 @@ import PaymentStatus from "./PaymentStatus";
 function Main({ user, setUser, autoLogin }) {
     const [nfts, setNFTs] = useState([]);
     const [watchlist, setWatchlist] = useState([]);
+    const [portfolioList, setPortfolioList] = useState([]);
     const [reFetch, setReFetch] = useState(false);
 
     useEffect(() => {
+        console.log('refetching...')
         fetch("/nfts")
             .then(r => r.json())
             .then(data => setNFTs(data))
-    }, [])
+    }, [reFetch])
 
-    useEffect(() => {
-        fetchWatchlist();
-    }, [user, reFetch])
+    useEffect(() => fetchWatchlist(), [user, reFetch])
 
     function fetchWatchlist() {
         if (user) {
@@ -38,6 +38,19 @@ function Main({ user, setUser, autoLogin }) {
                 })
         } else {
             return
+        }
+    }
+
+    function fetchPortfolio() {
+        if (user) {
+            fetch(`/portfolio/${user.id}`)
+                .then(r => r.json())
+                .then(listData => {
+                    // console.log(listData)
+                    setPortfolioList(listData.filter(listItem => {
+                        return listItem.ownership
+                    }))
+                })
         }
     }
 
@@ -59,7 +72,7 @@ function Main({ user, setUser, autoLogin }) {
                     />} >
                 </Route>
 
-                <Route path="/nftmain" element={<NftMain />} >
+                <Route path="/nftmain" element={<NftMain setReFetch={setReFetch} />} >
                     <Route index element={<NftMain nfts={nfts} />} />
                     <Route path=":nft_id" element={<NftDetails />} />
                 </Route>
@@ -67,15 +80,27 @@ function Main({ user, setUser, autoLogin }) {
                 <Route path="/login" element={<Login user={user} setUser={setUser} />} />
                 <Route path="/signup" element={<Signup setUser={setUser} />} />
                 <Route path="/profile" element={<Profile />} />
-                <Route path="/watchlist" element={<Watchlist
-                    user={user}
-                    watchlist={watchlist}
-                    reFetch={reFetch}
-                    setReFetch={setReFetch}
-                    fetchWatchlist={fetchWatchlist}
-                />} />
+                <Route path="/watchlist"
+                    element={
+                        <Watchlist
+                            user={user}
+                            watchlist={watchlist}
+                            reFetch={reFetch}
+                            setReFetch={setReFetch}
+                            fetchWatchlist={fetchWatchlist}
+                        />}
+                />
                 <Route path="/wallet" element={<Wallet user={user} autoLogin={autoLogin} />} />
-                <Route path="/portfolio" element={<Portfolio />} />
+                <Route path="/portfolio"
+                    element={
+                        <Portfolio
+                            user={user}
+                            portfolioList={portfolioList}
+                            fetchPortfolio={fetchPortfolio}
+                            reFetch={reFetch}
+                            setReFetch={setReFetch}
+                        />}
+                />
                 <Route path="/*" element={<NoMatch />} />
                 <Route path="paymentstatus" element={<PaymentStatus />} />
             </Routes>

@@ -30,4 +30,7 @@ Rails.application.routes.draw do
 
   # Purchase routes
   post "portfolios/:nft_id", to: "portfolios#purchase_nft"
+
+  # Portfolio routes
+  get "portfolio/:user_id", to: "portfolios#get_my_portfolio"
 end
