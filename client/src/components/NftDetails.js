@@ -28,9 +28,7 @@ function NftDetails({ setReFetch }) {
         fetch(`/pricings/${nft_id}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                run: true
-            })
+            body: JSON.stringify({})
         })
             .then(r => r.json())
             .then(priceData => {

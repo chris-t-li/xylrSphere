@@ -1,16 +1,35 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Table from "react-bootstrap/table";
 import PortoflioListItem from "./PortfolioListItem";
+import ThumbnailLineChart from "./ThumbnailLineChart";
 
-function Portfolio({ user, portfolioList, fetchPortfolio, reFetch, setReFetch }) {
+
+function Portfolio({ user, autoLogin, portfolioList, fetchPortfolio, reFetch, setReFetch }) {
+    const [portfolioPriceData, setPortfolioPriceData] = useState([]);
+
+    useEffect(() => autoLogin(), [])
     useEffect(() => fetchPortfolio(), [user, reFetch])
+    useEffect(() => {
+        if (!user) {
+            return
+        }
+
+        fetch(`/portfolio_pricings/${user.id}`)
+            .then(r => r.json())
+            .then(priceData => {
+                // console.log(priceData)
+                setPortfolioPriceData(priceData)
+            })
+    }, [user])
 
     const renderMyPortfolio = portfolioList.map(nft => {
+
         return <PortoflioListItem
             key={nft.id}
             nft={nft}
             user={user}
             setReFetch={setReFetch}
+            portfolioPriceData={portfolioPriceData}
         />
     })
 
@@ -33,7 +52,7 @@ function Portfolio({ user, portfolioList, fetchPortfolio, reFetch, setReFetch })
                         <th>Purchase Price</th>
                         <th>Rating</th>
                         <th>Change</th>
-                        <th>Price Graph</th>
+                        <th style={{ width: "3%" }}>Chart</th>
                         <th style={{ width: "3%" }}>Move</th>
                         <th style={{ width: "3%" }}>Sell</th>
                     </tr>
@@ -42,6 +61,8 @@ function Portfolio({ user, portfolioList, fetchPortfolio, reFetch, setReFetch })
                     {renderMyPortfolio}
                 </tbody>
             </Table>
+            {/* <ThumbnailLineChart portfolioPriceData={portfolioPriceData} /> */}
+
         </div>
     )
 }

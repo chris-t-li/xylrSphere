@@ -94,6 +94,7 @@ function Main({ user, setUser, autoLogin }) {
                     element={
                         <Portfolio
                             user={user}
+                            autoLogin={autoLogin}
                             portfolioList={portfolioList}
                             fetchPortfolio={fetchPortfolio}
                             reFetch={reFetch}

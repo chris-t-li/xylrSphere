@@ -1,3 +1,5 @@
+// import ThumbnailLineChart from "./ThumbnailLineChart";
+// import domtoimage from "dom-to-image";
 
 function PortfolioListItem({ nft, setReFetch }) {
 
@@ -29,7 +31,7 @@ function PortfolioListItem({ nft, setReFetch }) {
             <td>{obj.purchasePrice}</td>
             <td>{obj.rating}</td>
             <td>{(obj.lastPrice - obj.purchasePrice).toFixed(5)}</td>
-            <td>{/* Small Chart [stretch]*/}</td>
+            <td><img src="/stockicon.png" style={{ height: "50px" }}></img></td>
             <td><button >☰</button></td>
             <td><button onClick={processSell}>Sell</button></td>
         </tr >
