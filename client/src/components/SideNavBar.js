@@ -1,33 +1,32 @@
 import { useNavigate } from "react-router-dom";
-// import Nav from "react-bootstrap/Nav";
 
-function SideNavBar({ user, setUser }) {
+function SideNavBar({ user, setUser, setWatchlist, setPortfolioList, redirectToLogin }) {
     const navigate = useNavigate();
 
     function handleClick() {
         if (user) {
-            fetch("/login", { method: "DELETE" })
-            setUser(null)
-            navigate('/login')
-        } else {
-            navigate('/login')
+            fetch("/login", { method: "DELETE" });
+            setUser(null);
+            setWatchlist([]);
+            setPortfolioList([]);
         }
+        redirectToLogin();
     }
 
     return (
         <div className="sideNavBar">
-            <h1 id="xylrsphere-main-heading">XylrSphere</h1>
+            <h1 id="xylrsphere-main-heading">xylrSphere</h1>
             <nav className="sideNavBar" >
                 <ul>
-                    <li onClick={() => navigate("/nfts")}>Exchange
+                    <li className="sideNavBarLinks" onClick={() => navigate("/nfts")}>Exchange
                     </li>
-                    {user && <li onClick={() => navigate("/profile")}>Profile</li>}
-                    {user && <li onClick={() => navigate("/portfolio")}>Portfolio</li>}
-                    {user && <li onClick={() => navigate("/watchlist")}>Watchlist</li>}
+                    {user && <li className="sideNavBarLinks" onClick={() => navigate("/profile")}>Profile</li>}
+                    {user && <li className="sideNavBarLinks" onClick={() => navigate("/portfolio")}>Portfolio</li>}
+                    {user && <li className="sideNavBarLinks" onClick={() => navigate("/watchlist")}>Watchlist</li>}
 
-                    {user && <li onClick={() => navigate("/wallet")}>Wallet</li>}
-                    <li onClick={handleClick}>{user ? "Logout" : "Login"}</li>
-                    {!user && <li onClick={() => navigate("/signup")}>SignUp</li>}
+                    {user && <li className="sideNavBarLinks" onClick={() => navigate("/wallet")}>Wallet</li>}
+                    <li className="sideNavBarLinks" onClick={handleClick}>{user ? "Logout" : "Login"}</li>
+                    {!user && <li className="sideNavBarLinks" onClick={() => navigate("/signup")}>SignUp</li>}
                 </ul>
             </nav>
         </div>

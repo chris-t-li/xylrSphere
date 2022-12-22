@@ -29,10 +29,10 @@ function WatchlistItem({ nft, setReFetch }) {
             /></td>
             <td><h5>{nft.nft.name}</h5></td>
             <td><p>{nft.nft.chain}</p></td>
-            <td>{/* Price */}</td>
-            <td>{"Volume"}</td>
+            <td>{nft.nft.latest_price.price_nft.toFixed(5)}</td>
+            <td>{"✦".repeat(nft.nft.rarity)}</td>
             <td>Change</td>
-            <td>{/* Small Chart [stretch]*/}</td>
+            <td><img src="/stockicon.png" style={{ height: "50px" }}></img></td>
             <td><button >☰</button></td>
             <td><button onClick={removeFromWatchlist}>🗑</button></td>
         </tr >

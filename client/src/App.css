@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo&display=swap');
+
+* {
+  font-family: 'Orbitron', sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -41,8 +48,22 @@
   top: 0;
 }
 
+.sideNavBar * {
+  font-family: "Orbitron";
+}
+
+h1#xylrsphere-main-heading {
+  margin-left: 0.5em;
+  font-weight: 700;
+  font-size: 1.75em;
+}
+
 .sideNavBar ul {
   margin-top: 100px;
+}
+
+.sideNavBarLinks:hover {
+  cursor: pointer;
 }
 
 div .form-control:focus {
@@ -77,15 +98,23 @@ nav.sideNavBar ul li:hover {
 
 img.card-img-top:hover {
   transform: scale(1.2);
+  cursor: pointer;
 
 }
 
 div.card div.card-body button.btn-outline-secondary {
-  margin: 0 4.4em;
+  margin: 0.5em 3em;
+  position: relative;
+  left: 1em;
+  top: 1.6em;
+
 }
 
 div.card div.card-body button.btn-outline-success {
-  margin: 0 3.4em;
+  margin: 0 2em;
+  position: relative;
+  left: 0.8em;
+  top: 1.25em;
 }
 
 button.btn-outline-secondary {

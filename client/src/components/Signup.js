@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Form from 'react-bootstrap/Form';
 
 function Signup({ setUser }) {
     const navigate = useNavigate();
@@ -45,21 +46,112 @@ function Signup({ setUser }) {
 
     return (
         <div id="signup-container">
-            <h2>SignUp Page</h2>
+            <img
+                src="/futuregloba.gif"
+                alt="futuristic globe"
+                style={{
+                    width: "90.2vw",
+                    height: "100vh",
+                    overflow: "hidden"
+
+                }} />
+
             {signUpData.avatar_url ? <img src={signUpData.avatar_url} alt="avatar preview" /> : null}
-            <form onSubmit={handleSignUp} >
-                <input type="text" name="username" placeholder="username" onChange={handleChange} value={signUpData.username} />
-                <br />
-                <input type="text" name="email" placeholder="email" onChange={handleChange} value={signUpData.email} />
-                <br />
-                <input type="password" name="password" required placeholder="password" onChange={handleChange} value={signUpData.password} />
-                <br />
-                <input type="password" name="passwordConfirm" required placeholder="confirm password" onChange={handleChange} value={signUpData.passwordConfirm} />
-                <br />
-                <input type="text" name="avatar_url" placeholder="avatar" onChange={handleChange} value={signUpData.avatar_url} />
-                <br />
-                <input type="submit" name="Signup" value="Signup" />
-            </form>
+
+            <Form autoComplete="off"
+                onSubmit={handleSignUp}
+                style={{
+                    position: "absolute",
+                    top: "25vh",
+                    left: "17vw",
+                    backgroundColor: "rgba(100,100,100,0.5)",
+                    padding: "3% 4% 1.5% 4%",
+                    borderRadius: "5%"
+
+                }}>
+                <h3 style={{ color: "white", margin: "10% 0" }}>SignUp Page</h3>
+                <Form.Group>
+                    <Form.Control
+                        type="text"
+                        name="username"
+                        placeholder="username"
+                        onChange={handleChange}
+                        value={signUpData.username}
+                        style={{
+                            backgroundColor: "black",
+                            color: "white",
+                            borderColor: "darkblue",
+                            margin: "5% 0"
+                        }}>
+                    </Form.Control>
+                </Form.Group>
+
+                <Form.Group>
+                    <Form.Control
+                        type="text"
+                        name="email"
+                        placeholder="email"
+                        onChange={handleChange}
+                        value={signUpData.email}
+                        style={{
+                            backgroundColor: "black",
+                            color: "white",
+                            borderColor: "darkblue",
+                            margin: "5% 0"
+                        }}>
+                    </Form.Control>
+                </Form.Group>
+
+                <Form.Group>
+                    <Form.Control type="password" name="password" required placeholder="password" onChange={handleChange} value={signUpData.password}
+                        style={{
+                            backgroundColor: "black",
+                            color: "white",
+                            borderColor: "darkblue",
+                            margin: "5% 0"
+                        }}
+                    >
+                    </Form.Control>
+
+                </Form.Group>
+
+                <Form.Group>
+                    <Form.Control
+                        type="password"
+                        name="passwordConfirm"
+                        required placeholder="confirm password"
+                        onChange={handleChange}
+                        value={signUpData.passwordConfirm}
+                        style={{
+                            backgroundColor: "black",
+                            color: "white",
+                            borderColor: "darkblue",
+                            margin: "5% 0"
+                        }}
+                    >
+                    </Form.Control>
+                </Form.Group>
+
+                <Form.Group>
+                    <Form.Control
+                        type="text"
+                        name="avatar_url"
+                        placeholder="avatar"
+                        onChange={handleChange}
+                        value={signUpData.avatar_url}
+                        style={{
+                            backgroundColor: "black",
+                            color: "white",
+                            borderColor: "darkblue"
+                        }}
+                    >
+
+                    </Form.Control>
+                </Form.Group>
+
+                <button type="submit" name="Signup" value="Signup" style={{ margin: "10% 32%" }}
+                    className="btn btn-outline-light">Signup</button>
+            </Form>
         </div>
     )
 }

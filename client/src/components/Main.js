@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import SideNavBar from './SideNavBar';
 import NftListContainer from "./NftListContainer";
 import Login from "./Login";
 import Profile from "./Profile";
@@ -17,6 +18,7 @@ function Main({ user, setUser, autoLogin }) {
     const [watchlist, setWatchlist] = useState([]);
     const [portfolioList, setPortfolioList] = useState([]);
     const [reFetch, setReFetch] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch("/nfts")
@@ -53,6 +55,10 @@ function Main({ user, setUser, autoLogin }) {
         }
     }
 
+    function redirectToLogin() {
+        navigate('/login');
+    }
+
     return (
         <main>
             {/* <nav>
@@ -60,7 +66,7 @@ function Main({ user, setUser, autoLogin }) {
                 <Link to="/nfts">Exchange</Link>
                 <Link to="/watchlist">Watchlist</Link>
             </nav> */}
-
+            <SideNavBar user={user} setUser={setUser} setWatchlist={setWatchlist} setPortfolioList={setPortfolioList} redirectToLogin={redirectToLogin} />
             <Routes>
                 <Route path="/nfts" element={
                     <NftListContainer

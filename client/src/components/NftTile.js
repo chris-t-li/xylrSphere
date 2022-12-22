@@ -68,13 +68,13 @@ function NftTile({ nft, user, watchlist }) {
         } else if (isOnMarket) {
             return (
                 <button className="btn btn-success"
-                    style={{ position: "relative", left: "12.5em", top: "-29em" }}
+                    style={{ position: "relative", left: "12.4em", top: "-29em" }}
                     onClick={showNftDetails}>BUY</button>
             )
         } else {
             return (
                 <button className="btn btn-danger"
-                    style={{ position: "relative", left: "12em", top: "-29em" }}
+                    style={{ position: "relative", left: "11.6em", top: "-29em" }}
                     disabled>SOLD</button>
             )
         }
@@ -85,7 +85,7 @@ function NftTile({ nft, user, watchlist }) {
             className="card"
             style={{
                 width: "18rem",
-                // height: "31rem",
+                // height: "auto",
                 display: "inline-block",
                 margin: "1.75%",
                 borderRadius: "8px",
@@ -102,8 +102,12 @@ function NftTile({ nft, user, watchlist }) {
 
                 />
             </div>
-            <div className="card-body" style={{ height: "13em" }}>
-                <h5 className="card-title">{nft.name}</h5>
+            <div className="card-body"
+                style={{
+                    height: "auto",
+
+                }}>
+                <h5 className="card-title" style={{ fontSize: "1.15em" }}>{nft.name}</h5>
                 <span className="card-text">{"✦".repeat(nft.rarity)}</span>
                 <p className="card-text">{nft.chain}: {nft.latest_price.price_nft.toFixed(3)}</p>
                 <p className="card-text"> Supply: {nft.supply}</p>

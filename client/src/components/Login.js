@@ -39,7 +39,9 @@ function Login({ user, setUser }) {
                 src="/futuregloba.gif"
                 alt="futuristic globe"
                 style={{
-                    width: "100vw",
+                    width: "90.2vw",
+                    height: "100vh",
+                    overflow: "hidden"
 
                 }} />
 
@@ -51,7 +53,7 @@ function Login({ user, setUser }) {
                     left: "17vw",
                     backgroundColor: "rgba(100,100,100,0.5)",
                     padding: "3% 4% 1.5% 4%",
-                    borderRadius: "5%"
+                    borderRadius: "8px",
 
                 }}>
                 <h3 style={{ color: "white", margin: "10% 0" }}>Login Page</h3>
