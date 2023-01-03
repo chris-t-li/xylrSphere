@@ -3,13 +3,18 @@ import WalletTable from "./WalletTable";
 import AddToWallet from "./AddToWallet"
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import PaymentStatus from "./PaymentStatus";
 
 function Wallet({ user, autoLogin }) {
     const [walletData, setWalletData] = useState([]);
     const [walletUpdate, setWalletUpdate] = useState(false);
     const [show, setShow] = useState(false);
+    const [paymentSuccess, setPaymentSuccess] = useState(false);
 
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        setShow(false);
+        setPaymentSuccess(false);
+    };
     const handleShow = () => setShow(true);
 
     useEffect(() => autoLogin(), [])
@@ -52,12 +57,14 @@ function Wallet({ user, autoLogin }) {
                 </Modal.Header>
                 <Modal.Body>
                     <AddToWallet user={user} autoLogin={autoLogin} setWalletUpdate={setWalletUpdate}
-                        handleClose={handleClose}
+                        paymentSuccess={paymentSuccess}
+                        setPaymentSuccess={setPaymentSuccess}
                     />
+                    {paymentSuccess && <PaymentStatus />}
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={handleClose}>Close</Button>
                 </Modal.Footer>
 
             </Modal>

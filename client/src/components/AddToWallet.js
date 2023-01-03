@@ -11,7 +11,7 @@ const key = myModule.key;
 // const coinKey = myModule.coinkey;
 const stripePromise = loadStripe(key);
 
-function AddToWallet({ user, autoLogin, setWalletUpdate, handleClose }) {
+function AddToWallet({ user, autoLogin, setWalletUpdate, paymentSuccess, setPaymentSuccess }) {
     const [addToWalletData, setAddToWalletData] = useState({
         coin: "",
         qty: 0,
@@ -56,8 +56,8 @@ function AddToWallet({ user, autoLogin, setWalletUpdate, handleClose }) {
 
     return (
         <div id="stripe-checkout">
-            <form onSubmit={handleSubmit}>
-                <div class="form-group">
+            {!paymentSuccess && <form onSubmit={handleSubmit}>
+                <div className="form-group">
                     <label>Quantity</label>
                     <Form.Control
                         type="decimal"
@@ -69,7 +69,7 @@ function AddToWallet({ user, autoLogin, setWalletUpdate, handleClose }) {
 
                     </Form.Control>
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                     <label>Coin</label>
                     <Form.Select name="coin" value={addToWalletData.coin} onChange={handleChange}>
                         <option></option>
@@ -79,36 +79,38 @@ function AddToWallet({ user, autoLogin, setWalletUpdate, handleClose }) {
                         <option>AVAX</option>
                     </Form.Select>
                 </div>
-                <Button
-                    variant="primary"
-                    type="submit"
-                    onClick={getCoinPrice}
-                    style={{ margin: "0.5em 17em" }}
-                >Get Prices</Button>
-            </form>
+                <div className="d-flex justify-content-center">
+                    <Button
+                        variant="primary"
+                        type="submit"
+                        onClick={getCoinPrice}
+                        style={{ margin: "0.5em 0" }}
+                    >Get Prices</Button>
+                </div>
+            </form>}
             {
                 options ?
                     <div>
                         <Table striped bordered hover variant="dark"
                         >
-                            <thead class="thead-dark">
+                            <thead className="thead-dark">
                                 <tr>
                                     <th>Description</th>
-                                    <th class="text-end">$</th>
+                                    <th className="text-end">$</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>Last Price:</td>
-                                    <td class="text-end">${addToWalletData.price === 0 ? null : addToWalletData.price.toFixed(2)}</td>
+                                    <td className="text-end">${addToWalletData.price === 0 ? null : addToWalletData.price.toFixed(2)}</td>
                                 </tr>
                                 <tr>
                                     <td>Processing Fee:</td>
-                                    <td class="text-end">$5.00</td>
+                                    <td className="text-end">$5.00</td>
                                 </tr>
                                 <tr>
                                     <td>Total Cost:</td>
-                                    <td class="text-end">${(addToWalletData.price * addToWalletData.qty + 5).toFixed(2)}</td>
+                                    <td className="text-end">${(addToWalletData.price * addToWalletData.qty + 5).toFixed(2)}</td>
                                 </tr>
                             </tbody>
                         </Table>
@@ -120,7 +122,8 @@ function AddToWallet({ user, autoLogin, setWalletUpdate, handleClose }) {
                                 autoLogin={autoLogin}
                                 setOptions={setOptions}
                                 setWalletUpdate={setWalletUpdate} setAddToWalletData={setAddToWalletData}
-                                handleClose={handleClose}
+                                setPaymentSuccess={setPaymentSuccess}
+
                             />
 
                         </Elements>
