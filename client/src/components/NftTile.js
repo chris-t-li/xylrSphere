@@ -72,29 +72,27 @@ function NftTile({ nft, user, watchlist, fetchNfts }) {
             return null
         } else if (isOnWatchList) {
             return (
-
-                <button
-                    className="btn btn-outline-dark"
-                    style={{
-                        boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px",
-                        position: "relative",
-                        left: "4em"
-                    }}
-                    disabled
-                >In Watchlist</button>
-
+                <div className="d-flex justify-content-center">
+                    <button
+                        className="btn btn-outline-dark"
+                        style={{
+                            boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px"
+                        }}
+                        disabled
+                    >In Watchlist</button>
+                </div>
             )
         } else {
             return (
-                <button
-                    className="btn btn-outline-warning"
-                    style={{
-                        boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px",
-                        position: "relative",
-                        left: "3em"
-                    }}
-                    onClick={addToWatchListClick}
-                >Add to Watchlist</button>
+                <div className="d-flex justify-content-center">
+                    <button
+                        className="btn btn-outline-warning"
+                        style={{
+                            boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px"
+                        }}
+                        onClick={addToWatchListClick}
+                    >Add to Watchlist</button>
+                </div>
             )
         }
     }
@@ -104,15 +102,29 @@ function NftTile({ nft, user, watchlist, fetchNfts }) {
             return null
         } else if (isOnMarket) {
             return (
-                <button className="btn btn-success"
-                    style={{ position: "relative", left: "1.75em", top: "-26.5em", zIndex: "2" }}
-                    onClick={showNftDetails}>BUY</button>
+                <div className="d-flex justify-content-end">
+                    <button className="btn btn-success"
+                        style={{
+                            position: "absolute",
+                            top: "0.5em",
+                            zIndex: "20",
+                            margin: "0 0.5em 0 0"
+                        }}
+                        onClick={showNftDetails}>BUY</button>
+                </div>
             )
         } else {
             return (
-                <button className="btn btn-danger"
-                    style={{ position: "relative", left: "1em", top: "-26.5em", zIndex: "2" }}
-                    disabled>SOLD</button>
+                <div className="d-flex justify-content-end">
+                    <button className="btn btn-danger"
+                        style={{
+                            position: "absolute",
+                            top: "0.5em",
+                            zIndex: "20",
+                            margin: "0 0.5em 0 0"
+                        }}
+                        disabled>SOLD</button>
+                </div>
             )
         }
     }
@@ -130,6 +142,7 @@ function NftTile({ nft, user, watchlist, fetchNfts }) {
             }}
         >
             <div style={{ height: "18em", overflow: "hidden" }}>
+
                 <img
                     className="card-img-top"
                     src={nft.image_url}
@@ -141,6 +154,8 @@ function NftTile({ nft, user, watchlist, fetchNfts }) {
                     onClick={showNftDetails}
 
                 />
+                {onMarketButton()}
+
             </div>
             <div className="card-body"
                 style={{
@@ -160,7 +175,7 @@ function NftTile({ nft, user, watchlist, fetchNfts }) {
                     }}> {currentPrice}</p>
                 <p className="card-text"> Supply: {nft.supply}</p>
                 {watchListButton()}
-                {onMarketButton()}
+
             </div>
         </div>
     )
