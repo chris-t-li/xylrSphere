@@ -2,13 +2,16 @@ import { useState } from "react";
 import { PaymentElement, Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import CheckoutForm from "./CheckoutForm";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Table from "react-bootstrap/table";
 
 const myModule = require("../key");
 const key = myModule.key;
 // const coinKey = myModule.coinkey;
 const stripePromise = loadStripe(key);
 
-function AddToWallet({ user, autoLogin, setWalletUpdate }) {
+function AddToWallet({ user, autoLogin, setWalletUpdate, handleClose }) {
     const [addToWalletData, setAddToWalletData] = useState({
         coin: "",
         qty: 0,
@@ -53,34 +56,76 @@ function AddToWallet({ user, autoLogin, setWalletUpdate }) {
 
     return (
         <div id="stripe-checkout">
-            <h2>Top Up</h2>
             <form onSubmit={handleSubmit}>
-                <input type="decimal" name="qty" min='0' value={addToWalletData.qty} placeholder="Qty" onChange={handleChange}></input>
-                <select name="coin" value={addToWalletData.coin} onChange={handleChange}>
-                    <option></option>
-                    <option>ETH</option>
-                    <option>BNB</option>
-                    <option>SOL</option>
-                </select>
-                <button onClick={getCoinPrice}>Get Coin</button>
-                {/* <input type="submit" value="Buy Coins"></input> */}
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <Form.Control
+                        type="decimal"
+                        name="qty"
+                        min='0'
+                        value={addToWalletData.qty}
+                        placeholder="Qty"
+                        onChange={handleChange}>
+
+                    </Form.Control>
+                </div>
+                <div class="form-group">
+                    <label>Coin</label>
+                    <Form.Select name="coin" value={addToWalletData.coin} onChange={handleChange}>
+                        <option></option>
+                        <option>ETH</option>
+                        <option>BNB</option>
+                        <option>SOL</option>
+                        <option>AVAX</option>
+                    </Form.Select>
+                </div>
+                <Button
+                    variant="primary"
+                    type="submit"
+                    onClick={getCoinPrice}
+                    style={{ margin: "0.5em 17em" }}
+                >Get Prices</Button>
             </form>
-            <p>+5 USD transaction fee</p>
-            <p>Last Price: {addToWalletData.price === 0 ? null : addToWalletData.price.toFixed(2)}</p>
-            <p>Total Cost: {(addToWalletData.price * addToWalletData.qty + 5).toFixed(2)}</p>
             {
                 options ?
-                    <Elements stripe={stripePromise} options={options}>
-                        <PaymentElement />
-                        <CheckoutForm
-                            addToWalletData={addToWalletData}
-                            user={user}
-                            autoLogin={autoLogin}
-                            setOptions={setOptions}
-                            setWalletUpdate={setWalletUpdate} setAddToWalletData={setAddToWalletData}
-                        />
+                    <div>
+                        <Table striped bordered hover variant="dark"
+                        >
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Description</th>
+                                    <th class="text-end">$</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Last Price:</td>
+                                    <td class="text-end">${addToWalletData.price === 0 ? null : addToWalletData.price.toFixed(2)}</td>
+                                </tr>
+                                <tr>
+                                    <td>Processing Fee:</td>
+                                    <td class="text-end">$5.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Total Cost:</td>
+                                    <td class="text-end">${(addToWalletData.price * addToWalletData.qty + 5).toFixed(2)}</td>
+                                </tr>
+                            </tbody>
+                        </Table>
+                        <Elements stripe={stripePromise} options={options}>
+                            <PaymentElement />
+                            <CheckoutForm
+                                addToWalletData={addToWalletData}
+                                user={user}
+                                autoLogin={autoLogin}
+                                setOptions={setOptions}
+                                setWalletUpdate={setWalletUpdate} setAddToWalletData={setAddToWalletData}
+                                handleClose={handleClose}
+                            />
 
-                    </Elements> : null
+                        </Elements>
+                    </div>
+                    : null
             }
 
         </div >

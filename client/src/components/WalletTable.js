@@ -1,38 +1,40 @@
-
+import Table from "react-bootstrap/table";
 
 function WalletTable({ walletData }) {
     const renderWalletData = walletData.map(entry => {
         return (
             <tr key={entry.id}>
-                <td><button>+</button></td>
+
                 <td>{entry.coin.ticker}</td>
-                <td>"Icon"</td>
+                <td class="text-center"><img src={entry.coin.icon} /></td>
                 <td>{entry.coin.name}</td>
-                <td>{entry.coin.last_price.toFixed(2)}</td>
-                <td>{entry.quantity.toFixed(4)}</td>
-                <td>{(entry.coin.last_price * entry.quantity).toFixed(2)}</td>
+                <td class="text-end">{entry.coin.last_price.toFixed(2)}</td>
+                <td class="text-end">{entry.quantity.toFixed(4)}</td>
+                <td class="text-end">{(entry.coin.last_price * entry.quantity).toFixed(2)}</td>
             </tr>
         )
     })
 
     return (
         <div>
-            <table>
+            <Table striped bordered hover variant="dark">
                 <thead>
                     <tr>
-                        <th>Add</th>
-                        <th>Ticker</th>
-                        <th>Icon</th>
-                        <th>Coin</th>
-                        <th>Price</th>
-                        <th>Qty</th>
-                        <th>Value</th>
+
+                        <th style={{ width: "15%" }}>Ticker</th>
+                        <th style={{ width: "5%" }}
+
+                        >Icon</th>
+                        <th style={{ width: "20%" }}>Coin</th>
+                        <th class="text-end">Price</th>
+                        <th class="text-end">Qty</th>
+                        <th class="text-end">Value</th>
                     </tr>
                 </thead>
                 <tbody>
                     {renderWalletData}
                 </tbody>
-            </table>
+            </Table>
         </div>
     )
 }

@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useStripe, useElements } from '@stripe/react-stripe-js';
+import Button from 'react-bootstrap/Button';
 // import PaymentStatus from './PaymentStatus';
 
-function CheckoutForm({ user, addToWalletData, setAddToWalletData, setOptions, setWalletUpdate }) {
+function CheckoutForm({ user, addToWalletData, setAddToWalletData, setOptions, setWalletUpdate, handleClose }) {
     const stripe = useStripe();
     const elements = useElements();
     const [errorMessage, setErrorMessage] = useState(null);
@@ -27,7 +28,7 @@ function CheckoutForm({ user, addToWalletData, setAddToWalletData, setOptions, s
             })
     }
 
-    const submitPayment = async (e) => {
+    const handleClick = async (e) => {
         e.preventDefault();
         console.log("procesing payment...")
 
@@ -47,7 +48,9 @@ function CheckoutForm({ user, addToWalletData, setAddToWalletData, setOptions, s
         } else {
             console.log("payment successful")
             updateWallet();
+            handleClose();
             setOptions(null); // closes Stripe Payment Elements
+
         }
 
         setIsLoading(false);
@@ -55,9 +58,18 @@ function CheckoutForm({ user, addToWalletData, setAddToWalletData, setOptions, s
 
     return (
         <div>
-            <form onSubmit={submitPayment}>
+            <form
+            // onSubmit={submitPayment}
+            >
                 {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}
-                <button disabled={isLoading || !stripe || !elements}>Submit</button>
+                <Button
+                    disabled={isLoading || !stripe || !elements}
+                    variant="primary"
+                    style={{ margin: "0.5em 17em" }}
+                    onClick={handleClick}
+                >
+                    Buy Coins
+                </Button>
             </form>
             {/* {showPaymentSuccess && <PaymentStatus />} */}
         </div>

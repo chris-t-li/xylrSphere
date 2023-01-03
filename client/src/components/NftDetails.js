@@ -35,21 +35,17 @@ function NftDetails({ setReFetch }) {
     }, [fetchParams])
 
     useEffect(() => {
-        // Start at index = 0;
         let index = 0;
         const intervalChart = setInterval(() => {
-            // if remaining elements in the priceData array is <=10 (priceData length - index <= 10), run a new fetch
             if (!priceData) {
                 return
-            } else if (priceData.length - index - 50 <= 10) {
+            } else if (priceData.length - index <= 50) {
                 setFetchParams({ ...fetchParams, fetchNum: fetchParams.fetchNum += 1 })
             } else {
-                // setTrimmedTimeData(index to index + 50)
                 setTrimmedTimeData(timeData.slice(index, index + 50));
                 setTrimmedPriceData(priceData.slice(index, index + 50));
                 index += 1;
             }
-            // wait 1 sec
         }, 1000)
 
         return (() => clearInterval(intervalChart))

@@ -3,7 +3,7 @@ import NftTile from "./NftTile";
 import Search from "./Search";
 
 
-function NftListContainer({ nfts, user, watchlist }) {
+function NftListContainer({ nfts, user, watchlist, fetchNfts }) {
     const [nftList, setNftList] = useState([]);
 
     useEffect(() => setNftList(nfts), [nfts]);
@@ -14,7 +14,7 @@ function NftListContainer({ nfts, user, watchlist }) {
         }))
     }
     const renderedNftList = nftList.map(nft => {
-        return <NftTile key={nft.id} nft={nft} user={user} watchlist={watchlist} />
+        return <NftTile key={nft.id} nft={nft} user={user} watchlist={watchlist} fetchNfts={fetchNfts} />
     })
 
     return (

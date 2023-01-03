@@ -1,7 +1,7 @@
 class NftsController < ApplicationController
-    # GET /nfts
+    # GET /nfts?fetch_num
     def index
-        render json: Nft.all, status: :ok
+        render json: Nft.all, fetch_num: params[:fetch_num]
     end
 
     # GET /nfts/:id

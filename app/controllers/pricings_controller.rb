@@ -3,10 +3,6 @@ class PricingsController < ApplicationController
     def get_prices_for_nft_details
         nft = Nft.find(params[:nft_id])
         pricings = nft.pricings.limit(100).offset(100 * params[:fetch_num].to_i)
-        # price = nft.pricings.last.price_nft
-        # new_price = price * Math.exp(rand(-0.005..0.005))
-        # chain = Coin.find_by(ticker: nft.chain)
-        # Pricing.create(nft_id: nft.id, coin_id: chain.id, price_nft: new_price)
         render json: pricings, status: :ok
     end
 

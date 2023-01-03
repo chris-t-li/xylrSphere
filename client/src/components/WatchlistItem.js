@@ -20,7 +20,7 @@ function WatchlistItem({ nft, setReFetch }) {
     return (
 
         <tr>
-            <td><p>1</p></td>
+            {/* <td><p>1</p></td> */}
             <td><img
                 src={nft.nft.image_url}
                 alt="nft icon"

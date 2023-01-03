@@ -50,7 +50,7 @@ function Signup({ setUser }) {
                 src="/futuregloba.gif"
                 alt="futuristic globe"
                 style={{
-                    width: "90.2vw",
+                    width: "90.6vw",
                     height: "100vh",
                     overflow: "hidden"
 

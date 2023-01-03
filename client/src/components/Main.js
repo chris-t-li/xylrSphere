@@ -20,13 +20,17 @@ function Main({ user, setUser, autoLogin }) {
     const [reFetch, setReFetch] = useState(false);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        fetch("/nfts")
-            .then(r => r.json())
-            .then(data => setNFTs(data))
-    }, [reFetch])
-
+    useEffect(() => fetchNfts(0), [reFetch])
     useEffect(() => fetchWatchlist(), [user, reFetch])
+
+    function fetchNfts(pageIndex) {
+        fetch(`/nfts?fetch_num=${pageIndex}`)
+            .then(r => r.json())
+            .then(data => {
+                setNFTs(data)
+                console.log(data)
+            })
+    }
 
     function fetchWatchlist() {
         if (user) {
@@ -74,6 +78,7 @@ function Main({ user, setUser, autoLogin }) {
                         user={user}
                         setUser={setUser}
                         watchlist={watchlist}
+                        fetchNfts={fetchNfts}
                     />} >
                 </Route>
 
@@ -84,7 +89,7 @@ function Main({ user, setUser, autoLogin }) {
 
                 <Route path="/login" element={<Login user={user} setUser={setUser} />} />
                 <Route path="/signup" element={<Signup setUser={setUser} />} />
-                <Route path="/profile" element={<Profile />} />
+                <Route path="/profile" element={<Profile user={user} />} />
                 <Route path="/watchlist"
                     element={
                         <Watchlist

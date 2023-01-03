@@ -102,7 +102,7 @@ img.card-img-top:hover {
 
 }
 
-div.card div.card-body button.btn-outline-secondary {
+/* div.card div.card-body button.btn-outline-secondary {
   margin: 0.5em 3em;
   position: relative;
   left: 1em;
@@ -119,11 +119,12 @@ div.card div.card-body button.btn-outline-success {
 
 button.btn-outline-secondary {
   margin: 0 4.4em;
-}
+} */
 
 #wallet-container,
 #signup-container,
-#login-container {
+#login-container,
+#profile-container {
   margin-left: 200px;
 }
 
@@ -186,7 +187,8 @@ td {
 }
 
 #stripe-checkout {
-  width: 75%;
+  width: 100%;
+  padding: 5%;
 }
 
 

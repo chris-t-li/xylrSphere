@@ -1,11 +1,16 @@
 import { useState, useEffect } from "react";
 import WalletTable from "./WalletTable";
 import AddToWallet from "./AddToWallet"
-
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 function Wallet({ user, autoLogin }) {
     const [walletData, setWalletData] = useState([]);
     const [walletUpdate, setWalletUpdate] = useState(false);
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     useEffect(() => autoLogin(), [])
 
@@ -28,7 +33,35 @@ function Wallet({ user, autoLogin }) {
         <div id="wallet-container">
             <h1>Wallet</h1>
             <WalletTable walletData={walletData} walletUpdate={walletUpdate} />
-            <AddToWallet user={user} autoLogin={autoLogin} setWalletUpdate={setWalletUpdate} />
+            <Button
+                variant="primary"
+                onClick={handleShow}
+            >Top Up</Button>
+
+            <Modal
+                show={show}
+                onHide={handleClose}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        Top Up
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <AddToWallet user={user} autoLogin={autoLogin} setWalletUpdate={setWalletUpdate}
+                        handleClose={handleClose}
+                    />
+
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={handleClose}>Cancel</Button>
+                </Modal.Footer>
+
+            </Modal>
+
 
         </div>
     )

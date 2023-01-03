@@ -44,14 +44,14 @@ function Portfolio({ user, autoLogin, portfolioList, fetchPortfolio, reFetch, se
             <Table striped bordered hover variant="dark">
                 <thead>
                     <tr>
-                        <th style={{ width: "3%" }}>#</th>
+                        {/* <th style={{ width: "3%" }}>#</th> */}
                         <th style={{ width: "5%" }}>Icon</th>
                         <th style={{ width: "20%" }}>Name</th>
                         <th style={{ width: "5%" }}>Coin</th>
                         <th>Last Price</th>
                         <th>Purchase Price</th>
-                        <th>Rating</th>
                         <th>Change</th>
+                        <th>Rating</th>
                         <th style={{ width: "3%" }}>Chart</th>
                         <th style={{ width: "3%" }}>Move</th>
                         <th style={{ width: "3%" }}>Sell</th>
@@ -62,7 +62,6 @@ function Portfolio({ user, autoLogin, portfolioList, fetchPortfolio, reFetch, se
                 </tbody>
             </Table>
             {/* <ThumbnailLineChart portfolioPriceData={portfolioPriceData} /> */}
-
         </div>
     )
 }

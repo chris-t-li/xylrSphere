@@ -25,7 +25,7 @@ function Watchlist({ user, watchlist, reFetch, setReFetch, fetchWatchlist }) {
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th style={{ width: "3%" }}>#</th>
+                        {/* <th style={{ width: "3%" }}>#</th> */}
                         <th style={{ width: "5%" }}>Icon</th>
                         <th style={{ width: "20%" }}>Name</th>
                         <th style={{ width: "5%" }}>Coin</th>
