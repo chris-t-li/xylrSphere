@@ -62,20 +62,21 @@ function LineChart({ trimmedPriceData, trimmedTimeData, selectBuyNFT }) {
     const options = {
         animation,
         responsive: true,
-
+        elements: {
+            point: {
+                radius: 0
+            }
+        },
         plugins: {
             legend: {
                 position: 'top',
-            },
-
-            // title: {
-            //     display: true,
-            //     text: 'Chart.js Line Chart',
-            // },
+            }
         },
         scales: {
             x: {
+                display: false,
                 ticks: {
+                    display: false,
                     callback: function (val, index) {
                         return index % 2 === 0 ? this.getLabelForValue(val) : "";
                     },

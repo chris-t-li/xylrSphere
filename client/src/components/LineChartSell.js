@@ -25,9 +25,16 @@ function LineChartSell({ priceData, timeData, nftData }) {
                 position: 'top',
             },
         },
+        elements: {
+            point: {
+                radius: 0
+            }
+        },
         scales: {
             x: {
+                display: false,
                 ticks: {
+                    display: false,
                     callback: function (val, index) {
                         return index % 10 === 0 ? this.getLabelForValue(val) : "";
                     },

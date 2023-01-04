@@ -2,7 +2,7 @@ class PricingsController < ApplicationController
     # GET /pricings?nft_id&fetch_num
     def get_prices_for_nft_details
         nft = Nft.find(params[:nft_id])
-        pricings = nft.pricings.limit(100).offset(100 * params[:fetch_num].to_i)
+        pricings = nft.pricings.limit(100).offset(3000+100 * params[:fetch_num].to_i)
         render json: pricings, status: :ok
     end
 

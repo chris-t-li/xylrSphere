@@ -3,7 +3,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import SideNavBar from './SideNavBar';
 import NftListContainer from "./NftListContainer";
 import Login from "./Login";
-import Profile from "./Profile";
+// import Profile from "./Profile";
 import Watchlist from "./Watchlist";
 import Wallet from "./Wallet";
 import Portfolio from "./Portfolio";
@@ -65,11 +65,6 @@ function Main({ user, setUser, autoLogin }) {
 
     return (
         <main>
-            {/* <nav>
-                These NAV links should be attached to the Images in each NFT Tile
-                <Link to="/nfts">Exchange</Link>
-                <Link to="/watchlist">Watchlist</Link>
-            </nav> */}
             <SideNavBar user={user} setUser={setUser} setWatchlist={setWatchlist} setPortfolioList={setPortfolioList} redirectToLogin={redirectToLogin} />
             <Routes>
                 <Route path="/nfts" element={

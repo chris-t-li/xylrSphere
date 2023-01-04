@@ -9,13 +9,15 @@ function NftListContainer({ nfts, user, watchlist, fetchNfts, setReFetch }) {
     const [nftList, setNftList] = useState([]);
     const [selectBuyNFT, setSelectBuyNFT] = useState();
     const [show, setShow] = useState(false);
+    const [currentPrice, setCurrentPrice] = useState(0);
     const handleClose = () => {
         setShow(false);
         // setReFetch(value => !value);
     };
-    const handleShow = (nft) => {
+    const handleShow = (nft, currentPrice) => {
         setShow(true);
         setSelectBuyNFT(nft);
+        setCurrentPrice(currentPrice);
     };
 
     useEffect(() => setNftList(nfts), [nfts]);
@@ -42,12 +44,11 @@ function NftListContainer({ nfts, user, watchlist, fetchNfts, setReFetch }) {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
-
                         {selectBuyNFT && selectBuyNFT.name}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {selectBuyNFT && <BuyNftDetails selectBuyNFT={selectBuyNFT} setReFetch={setReFetch} />}
+                    {selectBuyNFT && <BuyNftDetails selectBuyNFT={selectBuyNFT} setReFetch={setReFetch} currentPrice={currentPrice} />}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={handleClose}>Close</Button>

@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 function NftTile({ nft, user, watchlist, fetchNfts, handleShow }) {
     const [isOnWatchList, setIsOnWatchList] = useState();
     const [isOnMarket, setIsOnMarket] = useState();
     const [color, setColor] = useState("");
     const [currentPrice, setCurrentPrice] = useState();
-    const navigate = useNavigate();
 
     useEffect(() => {
         function isWatchList(nftParam) {
@@ -64,8 +62,7 @@ function NftTile({ nft, user, watchlist, fetchNfts, handleShow }) {
     }
 
     function showNftDetails() {
-        // navigate(`/nftmain/${nft.id}`)
-        handleShow(nft)
+        handleShow(nft, currentPrice)
     }
 
     const watchListButton = () => {

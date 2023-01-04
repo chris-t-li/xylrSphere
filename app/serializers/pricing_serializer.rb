@@ -1,5 +1,5 @@
 class PricingSerializer < ActiveModel::Serializer
-  attributes :id, :price_nft, :created_at, :price_time
+  attributes :id, :price_nft, :created_at, :updated_at, :price_time
   has_one :nft
   has_one :coin
 

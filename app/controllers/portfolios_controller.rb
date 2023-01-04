@@ -30,26 +30,24 @@ class PortfoliosController < ApplicationController
         render json: portfolio, status: :ok
     end
 
-    # POST /portfolios/:nft_id
-    def purchase_nft
-        
-        # gets latest price for NFT
+    # POST /portfolios/
+    def purchase_nft    
         nft = Nft.find(params[:nft_id])
         coin = Coin.find_by(ticker: nft.chain)
-        latest_price = nft.pricings.last.price_nft
+        purchase_price = params[:pp].to_f
         user = User.find(session[:user_id])
         user_wallet = Wallet.find_by(user: user, coin: coin)
         # checks if user has enough funds in wallet
-        if user_wallet.quantity >= latest_price
+        if user_wallet.quantity >= purchase_price
             # makes purchase if sufficient: update Portfolio instance to show ownership. Update Wallet to show reduction in balance
             ownership = Portfolio.find_or_create_by(user: user, nft: nft)
-            ownership.update(ownership: true, purchase_price: latest_price)
+            ownership.update(ownership: true, purchase_price: purchase_price)
             nft.update(on_market: false)
-            user_wallet.update(quantity: user_wallet.quantity-latest_price)
+            user_wallet.update(quantity: user_wallet.quantity-purchase_price)
 
             render json: {
                 message: "Purchase Successful!", 
-                purchase_price: latest_price,
+                purchase_price: purchase_price,
                 remaining_coin_in_wallet: user_wallet.quantity,
                 ownership: ownership,
                 wallet: user_wallet

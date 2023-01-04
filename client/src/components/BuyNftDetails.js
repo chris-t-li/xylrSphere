@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import LineChart from "./LineChart";
 import Table from "react-bootstrap/esm/Table";
 
-function BuyNftDetails({ selectBuyNFT, setReFetch }) {
+function BuyNftDetails({ selectBuyNFT, setReFetch, currentPrice }) {
     const [nftData, setNftData] = useState({});
     const [count, setCount] = useState(15);
     const [priceData, setPriceData] = useState([]);
@@ -10,6 +10,7 @@ function BuyNftDetails({ selectBuyNFT, setReFetch }) {
     const [trimmedPriceData, setTrimmedPriceData] = useState([]);
     const [trimmedTimeData, setTrimmedTimeData] = useState([]);
     const [processBuyMessage, setProcessBuyMessage] = useState();
+    const [errorMessage, setErrorMessage] = useState();
     const [fetchParams, setFetchParams] = useState({ fetch: false, fetchNum: 0 });
 
     useEffect(() => {
@@ -29,8 +30,12 @@ function BuyNftDetails({ selectBuyNFT, setReFetch }) {
             .then(r => r.json())
             .then(newPriceData => {
                 console.log("Fetched more data")
-                // console.table(newPriceData);
-                setTimeData([...timeData.slice(50)].concat(newPriceData.map(p => p.price_time)));
+                console.table(newPriceData);
+                setTimeData([...timeData.slice(50)].concat(newPriceData.map(p => {
+                    const dateValue = new Date(p.updated_at)
+                    return dateValue.toTimeString().substring(0, 5)
+                    // return p.price_time
+                })));
                 setPriceData([...priceData.slice(50)].concat(newPriceData.map(p => p.price_nft)));
             })
     }, [fetchParams])
@@ -70,13 +75,10 @@ function BuyNftDetails({ selectBuyNFT, setReFetch }) {
 
     const processBuy = () => {
 
-        fetch(`/portfolios/${selectBuyNFT.id}`, {
+        fetch(`/portfolios?nft_id=${selectBuyNFT.id}&pp=${currentPrice}`, {
             method: "POST",
             headings: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                nft_id: selectBuyNFT.id,
-                // user_id: 1
-            })
+            body: JSON.stringify({})
         })
             .then(r => {
                 if (r.ok) {
@@ -84,9 +86,10 @@ function BuyNftDetails({ selectBuyNFT, setReFetch }) {
                         // console.log(r);
                         setProcessBuyMessage(r);
                         setReFetch(reFetch => !reFetch)
+
                     })
                 } else {
-                    r.json().then(e => alert(e.error))
+                    r.json().then(e => setErrorMessage(e.error))
                 }
             })
     }
@@ -133,7 +136,7 @@ function BuyNftDetails({ selectBuyNFT, setReFetch }) {
 
                     {nftData.on_market ? <tr>
                         <td>Price:</td>
-                        {!processBuyMessage ? <td style={count == 0 ? { textDecoration: "line-through", color: "red" } : null}>{selectBuyNFT.most_recent_pricings[99].price_nft.toFixed(5)}</td> : <td>{selectBuyNFT.most_recent_pricings[99].price_nft.toFixed(5)}</td>}
+                        {!processBuyMessage ? <td style={count == 0 ? { textDecoration: "line-through", color: "red" } : null}>{currentPrice}</td> : <td>{currentPrice}</td>}
                     </tr> : null}
                     {nftData.on_market ? <tr>
                         <td>Price Valid for:</td>
@@ -159,6 +162,11 @@ function BuyNftDetails({ selectBuyNFT, setReFetch }) {
                     <p>You just bought {selectBuyNFT.name} for <img src={selectBuyNFT.chain_icon}></img>{processBuyMessage.purchase_price.toFixed(5)}</p>
                     <p>Remaining <img src={selectBuyNFT.chain_icon}></img> in wallet: {processBuyMessage.remaining_coin_in_wallet.toFixed(5)}</p>
                     <p>Your portfolio and wallet have been updated</p>
+                </div>
+            }
+            {errorMessage &&
+                <div>
+                    <h4 style={{ color: "red" }}>{errorMessage}</h4>
                 </div>
             }
         </div>)

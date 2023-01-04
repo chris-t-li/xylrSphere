@@ -9,7 +9,7 @@ function Signup({ setUser }) {
         email: "",
         password: "",
         passwordConfirm: "",
-        avatar_url: ""
+        // avatar_url: ""
     })
 
     function handleChange(e) {
@@ -36,7 +36,7 @@ function Signup({ setUser }) {
                         email: "",
                         password: "",
                         passwordConfirm: "",
-                        avatar_url: ""
+                        // avatar_url: ""
                     })
                     navigate("/nfts");
                 })
@@ -132,7 +132,7 @@ function Signup({ setUser }) {
                     </Form.Control>
                 </Form.Group>
 
-                <Form.Group>
+                {/* <Form.Group>
                     <Form.Control
                         type="text"
                         name="avatar_url"
@@ -147,7 +147,7 @@ function Signup({ setUser }) {
                     >
 
                     </Form.Control>
-                </Form.Group>
+                </Form.Group> */}
 
                 <button type="submit" name="Signup" value="Signup" style={{ margin: "10% 32%" }}
                     className="btn btn-outline-light">Signup</button>

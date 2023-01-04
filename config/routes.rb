@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   get "/portfolio_pricings/:user_id", to: "pricings#get_prices_for_my_portfolio"
 
   # Purchase / Sell routes
-  post "portfolios/:nft_id", to: "portfolios#purchase_nft"
+  post "portfolios", to: "portfolios#purchase_nft"
   patch "portfolios/:nft_id", to: "portfolios#sell_nft"
 
   # Portfolio routes
