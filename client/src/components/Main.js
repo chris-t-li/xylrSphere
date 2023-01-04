@@ -79,6 +79,7 @@ function Main({ user, setUser, autoLogin }) {
                         setUser={setUser}
                         watchlist={watchlist}
                         fetchNfts={fetchNfts}
+                        setReFetch={setReFetch}
                     />} >
                 </Route>
 
@@ -89,7 +90,7 @@ function Main({ user, setUser, autoLogin }) {
 
                 <Route path="/login" element={<Login user={user} setUser={setUser} />} />
                 <Route path="/signup" element={<Signup setUser={setUser} />} />
-                <Route path="/profile" element={<Profile user={user} />} />
+                {/* <Route path="/profile" element={<Profile user={user} />} /> */}
                 <Route path="/watchlist"
                     element={
                         <Watchlist

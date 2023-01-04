@@ -44,7 +44,7 @@ function SellNFTDetails({ selectSellNFT, setReFetch }) {
     }, [selectSellNFT])
 
     const processSell = () => {
-        console.log('selling NFT')
+        // console.log('selling NFT')
         fetch(`portfolios/${selectSellNFT.nft.id}`, {
             method: "PATCH",
             headings: { "Content-Type": "application/json" },

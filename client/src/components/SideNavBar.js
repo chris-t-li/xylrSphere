@@ -20,7 +20,7 @@ function SideNavBar({ user, setUser, setWatchlist, setPortfolioList, redirectToL
                 <ul>
                     <li className="sideNavBarLinks" onClick={() => navigate("/nfts")}>Exchange
                     </li>
-                    {user && <li className="sideNavBarLinks" onClick={() => navigate("/profile")}>Profile</li>}
+                    {/* {user && <li className="sideNavBarLinks" onClick={() => navigate("/profile")}>Profile</li>} */}
                     {user && <li className="sideNavBarLinks" onClick={() => navigate("/portfolio")}>Portfolio</li>}
                     {user && <li className="sideNavBarLinks" onClick={() => navigate("/watchlist")}>Watchlist</li>}
 

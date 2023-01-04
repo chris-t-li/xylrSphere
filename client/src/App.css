@@ -141,12 +141,6 @@ span {
   color: gold;
 }
 
-#nft-price-chart {
-  display: inline-block;
-  width: 800px;
-  /* float: right; */
-}
-
 .watchlist-icon {
   height: 50px;
   width: 50px;

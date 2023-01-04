@@ -17,7 +17,8 @@ function Watchlist({ user, watchlist, reFetch, setReFetch, fetchWatchlist }) {
     return (
         <div id="watchlist-container"
             style={{
-                marginLeft: "210px",
+                marginLeft: "201px",
+                marginTop: "2em",
                 maxWidth: "90vw"
 
             }}>
@@ -30,9 +31,9 @@ function Watchlist({ user, watchlist, reFetch, setReFetch, fetchWatchlist }) {
                         <th style={{ width: "20%" }}>Name</th>
                         <th style={{ width: "5%" }}>Coin</th>
                         <th>Last</th>
-                        <th>Volume</th>
+                        <th>Rating</th>
                         <th>Change</th>
-                        <th>Price Graph</th>
+                        <th>Details</th>
                         <th style={{ width: "3%" }}>Move</th>
                         <th style={{ width: "3%" }}>X</th>
                     </tr>

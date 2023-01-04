@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function NftTile({ nft, user, watchlist, fetchNfts }) {
+function NftTile({ nft, user, watchlist, fetchNfts, handleShow }) {
     const [isOnWatchList, setIsOnWatchList] = useState();
     const [isOnMarket, setIsOnMarket] = useState();
     const [color, setColor] = useState("");
@@ -64,7 +64,8 @@ function NftTile({ nft, user, watchlist, fetchNfts }) {
     }
 
     function showNftDetails() {
-        navigate(`/nftmain/${nft.id}`)
+        // navigate(`/nftmain/${nft.id}`)
+        handleShow(nft)
     }
 
     const watchListButton = () => {
@@ -163,8 +164,10 @@ function NftTile({ nft, user, watchlist, fetchNfts }) {
 
                 }}>
                 <h5 className="card-title" style={{ fontSize: "1.15em" }}>{nft.name}</h5>
+                {/* <img src="/stockicon.png" style={{ height: "2em" }} /> */}
                 <span className="card-text">{"✦".repeat(nft.rarity)}</span>
                 {/* <p className="card-text">{nft.chain}: {nft.latest_price.price_nft.toFixed(3)}</p> */}
+
                 <br></br>
                 <img style={{ display: "inline-block" }} src={nft.chain_icon} />
                 <p className="card-text"
@@ -173,6 +176,7 @@ function NftTile({ nft, user, watchlist, fetchNfts }) {
                         display: "inline-block",
                         margin: "0 0.5em"
                     }}> {currentPrice}</p>
+
                 {/* <p className="card-text"> Supply: {nft.supply}</p> */}
                 {watchListButton()}
 

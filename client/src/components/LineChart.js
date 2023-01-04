@@ -2,24 +2,26 @@ import React from 'react';
 import { Chart } from 'chart.js/auto'
 import { Line } from 'react-chartjs-2';
 
-function LineChart({ trimmedPriceData, trimmedTimeData }) {
+function LineChart({ trimmedPriceData, trimmedTimeData, selectBuyNFT }) {
     const randColor = () => {
-        const r = Math.floor(256 * Math.random()), g = Math.floor(256 * Math.random()), b = Math.floor(256 * Math.random())
-        return `rgb(${r}. ${g}, ${b})`
+
+        // const r = Math.floor(256 * Math.random()), g = Math.floor(256 * Math.random()), b = Math.floor(256 * Math.random())
+        // return `rgb(${r}. ${g}, ${b})`
+        return `rgb(0,0,0)`
     }
     // console.log(Chart)
     const data = {
         labels: trimmedTimeData,
         datasets: [
             {
-                label: 'NFT Price Chart for [...]',
+                label: `Price Chart for ${selectBuyNFT.name}`,
                 data: trimmedPriceData,
                 borderColor: randColor(),
                 backgroundColor: randColor(),
-                fill: {
-                    target: 'origin',
-                    below: randColor()
-                }
+                // fill: {
+                //     target: 'origin',
+                //     // below: randColor()
+                // }
             }
         ],
     };
@@ -65,21 +67,32 @@ function LineChart({ trimmedPriceData, trimmedTimeData }) {
             legend: {
                 position: 'top',
             },
+
             // title: {
             //     display: true,
             //     text: 'Chart.js Line Chart',
             // },
         },
+        scales: {
+            x: {
+                ticks: {
+                    callback: function (val, index) {
+                        return index % 2 === 0 ? this.getLabelForValue(val) : "";
+                    },
+                    color: 'black',
+                }
+            }
+        }
     };
 
     return (
         <div id="nft-price-chart"
             style={{
-                height: "500px",
-                display: "inline-block",
-                position: "absolute",
-                left: "43em",
-                top: "6em"
+                height: "100%",
+                // display: "inline-block",
+                // position: "absolute",
+                // left: "43em",
+                // top: "6em"
             }}>
             <Line
                 data={data}

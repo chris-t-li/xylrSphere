@@ -48,7 +48,8 @@ function Portfolio({ user, autoLogin, portfolioList, fetchPortfolio, reFetch, se
     return (
         <div id="watchlist-container"
             style={{
-                marginLeft: "210px",
+                marginLeft: "201px",
+                marginTop: "2em",
                 maxWidth: "90vw"
 
             }}>

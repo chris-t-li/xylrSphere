@@ -35,7 +35,7 @@ function Wallet({ user, autoLogin }) {
     }, [user, walletUpdate])
 
     return (
-        <div id="wallet-container">
+        <div id="wallet-container" style={{ marginTop: "2em" }}>
             <h1>Wallet</h1>
             <WalletTable walletData={walletData} walletUpdate={walletUpdate} />
             <Button
