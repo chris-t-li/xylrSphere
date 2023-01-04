@@ -28,7 +28,7 @@ function Main({ user, setUser, autoLogin }) {
             .then(r => r.json())
             .then(data => {
                 setNFTs(data)
-                console.log(data)
+                // console.log(data)
             })
     }
 

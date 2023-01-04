@@ -60,4 +60,27 @@ class PortfoliosController < ApplicationController
             render json: {error: "Insufficient Coins. Please top up!"}, status: :unprocessable_entity
         end
     end
+
+    # PATCH /portfolios/:nft_id
+    def sell_nft
+        user = User.find(session[:user_id])
+        nft = Nft.find(params[:nft_id])
+        coin = Coin.find_by(ticker: nft.chain)
+        latest_price = nft.pricings.last.price_nft
+        user_wallet = Wallet.find_by(user: user, coin: coin)
+        ownership = Portfolio.find_by(user: user, nft: nft)
+        # byebug
+        ownership.update(ownership: false)
+        nft.update(on_market: true)
+        user_wallet.update(quantity: user_wallet.quantity+latest_price)
+
+        render json: {
+            message: "NFT Sell Successful",
+            sell_price: latest_price,
+            remaining_coin_in_wallet: user_wallet.quantity,
+            ownership: ownership,
+            wallet: user_wallet
+        }, status: :accepted
+        
+    end
 end

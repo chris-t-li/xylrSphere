@@ -28,7 +28,7 @@ function NftDetails({ setReFetch }) {
         fetch(`/pricings?nft_id=${nft_id}&fetch_num=${fetchParams.fetchNum}`)
             .then(r => r.json())
             .then(priceData => {
-                console.table("Got more data", priceData);
+                // console.table("Got more data", priceData);
                 setTimeData(priceData.map(p => p.price_time));
                 setPriceData(priceData.map(p => p.price_nft));
             })

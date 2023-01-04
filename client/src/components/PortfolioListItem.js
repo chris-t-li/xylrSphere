@@ -1,6 +1,6 @@
 
 
-function PortfolioListItem({ nft, setReFetch }) {
+function PortfolioListItem({ nft, handleShow }) {
 
     const obj = {
         imgSrc: nft.nft.image_url,
@@ -11,13 +11,8 @@ function PortfolioListItem({ nft, setReFetch }) {
         rating: "✦".repeat(nft.nft.rarity)
     }
 
-    const processSell = () => {
-        console.log('sell NFT')
-    }
-
     return (
         <tr>
-            {/* <td><p>{nft.id}</p></td> */}
             <td><img
                 src={obj.imgSrc}
                 alt="nft icon"
@@ -32,7 +27,7 @@ function PortfolioListItem({ nft, setReFetch }) {
             <td>{obj.rating}</td>
             <td><img src="/stockicon.png" style={{ height: "50px" }}></img></td>
             <td><button >☰</button></td>
-            <td><button onClick={processSell}>Sell</button></td>
+            <td><button onClick={() => handleShow(nft)}>Sell</button></td>
         </tr >
     )
 }

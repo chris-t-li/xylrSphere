@@ -1,11 +1,22 @@
 import { useState, useEffect } from "react";
 import Table from "react-bootstrap/table";
 import PortoflioListItem from "./PortfolioListItem";
-import ThumbnailLineChart from "./ThumbnailLineChart";
-
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/esm/Button";
+import SellNFTDetails from "./SellNFTDetails";
 
 function Portfolio({ user, autoLogin, portfolioList, fetchPortfolio, reFetch, setReFetch }) {
     const [portfolioPriceData, setPortfolioPriceData] = useState([]);
+    const [selectSellNFT, setSelectSellNFT] = useState(null);
+    const [show, setShow] = useState(false);
+    const handleClose = () => {
+        setShow(false);
+        setReFetch(value => !value);
+    };
+    const handleShow = (nft) => {
+        setShow(true);
+        setSelectSellNFT(nft);
+    };
 
     useEffect(() => autoLogin(), [])
     useEffect(() => fetchPortfolio(), [user, reFetch])
@@ -28,8 +39,9 @@ function Portfolio({ user, autoLogin, portfolioList, fetchPortfolio, reFetch, se
             key={nft.id}
             nft={nft}
             user={user}
-            setReFetch={setReFetch}
+            // setReFetch={setReFetch}
             portfolioPriceData={portfolioPriceData}
+            handleShow={handleShow}
         />
     })
 
@@ -61,7 +73,26 @@ function Portfolio({ user, autoLogin, portfolioList, fetchPortfolio, reFetch, se
                     {renderMyPortfolio}
                 </tbody>
             </Table>
-            {/* <ThumbnailLineChart portfolioPriceData={portfolioPriceData} /> */}
+            <Modal
+                show={show}
+                onHide={handleClose}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        Selling... {selectSellNFT && selectSellNFT.nft.name}
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {selectSellNFT && <SellNFTDetails selectSellNFT={selectSellNFT} setReFetch={setReFetch} />}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={handleClose}>Close</Button>
+                </Modal.Footer>
+
+            </Modal>
         </div>
     )
 }

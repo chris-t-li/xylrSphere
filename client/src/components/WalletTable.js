@@ -9,7 +9,7 @@ function WalletTable({ walletData }) {
             <tr key={entry.id}>
 
                 <td>{entry.coin.ticker}</td>
-                <td className="text-center"><img src={entry.coin.icon} /></td>
+                <td><img src={entry.coin.icon} /></td>
                 <td>{entry.coin.name}</td>
                 <td className="text-end">{entry.coin.last_price.toFixed(2)}</td>
                 <td className="text-end">{entry.quantity.toFixed(4)}</td>
@@ -27,10 +27,8 @@ function WalletTable({ walletData }) {
                     <tr>
 
                         <th >Ticker</th>
-                        <th
-
-                        >Icon</th>
-                        <th >Coin</th>
+                        <th>Icon</th>
+                        <th>Coin</th>
                         <th className="text-end">Price</th>
                         <th className="text-end">Qty</th>
                         <th className="text-end">Value</th>

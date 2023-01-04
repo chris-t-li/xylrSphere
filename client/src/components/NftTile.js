@@ -173,7 +173,7 @@ function NftTile({ nft, user, watchlist, fetchNfts }) {
                         display: "inline-block",
                         margin: "0 0.5em"
                     }}> {currentPrice}</p>
-                <p className="card-text"> Supply: {nft.supply}</p>
+                {/* <p className="card-text"> Supply: {nft.supply}</p> */}
                 {watchListButton()}
 
             </div>
