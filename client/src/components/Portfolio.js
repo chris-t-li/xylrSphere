@@ -65,8 +65,8 @@ function Portfolio({ user, autoLogin, portfolioList, fetchPortfolio, reFetch, se
                         <th>Purchase Price</th>
                         <th>Change</th>
                         <th>Rating</th>
-                        <th style={{ width: "3%" }}>Chart</th>
-                        <th style={{ width: "3%" }}>Move</th>
+                        {/* <th style={{ width: "3%" }}>Chart</th> */}
+                        {/* <th style={{ width: "3%" }}>Move</th> */}
                         <th style={{ width: "3%" }}>Sell</th>
                     </tr>
                 </thead>

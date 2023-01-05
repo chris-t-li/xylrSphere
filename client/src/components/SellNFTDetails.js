@@ -5,7 +5,7 @@ import Table from "react-bootstrap/esm/Table";
 
 function SellNFTDetails({ selectSellNFT, setReFetch }) {
     const [nftData, setNftData] = useState({});
-    const [count, setCount] = useState(10);
+    const [count, setCount] = useState(15);
     const [priceData, setPriceData] = useState([]);
     const [timeData, setTimeData] = useState([]);
     const [processSellMessage, setProcessSellMessage] = useState(null)
@@ -29,7 +29,7 @@ function SellNFTDetails({ selectSellNFT, setReFetch }) {
 
 
     useEffect(() => {
-        let counterVariable = 10;
+        let counterVariable = 15;
         const timer = setInterval(() => {
             if (counterVariable == 0) {
                 clearInterval(timer)

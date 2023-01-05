@@ -30,8 +30,8 @@ function PortfolioListItem({ nft, handleShow }) {
             <td>{obj.purchasePrice}</td>
             <td>{(obj.lastPrice - obj.purchasePrice).toFixed(5)}</td>
             <td>{obj.rating}</td>
-            <td><img src="/stockicon.png" style={{ height: "50px" }} onClick={showNFTDetails}></img></td>
-            <td><button >☰</button></td>
+            {/* <td><img src="/stockicon.png" style={{ height: "50px" }} onClick={showNFTDetails}></img></td> */}
+            {/* <td><button >☰</button></td> */}
             <td><button onClick={() => handleShow(nft)}>Sell</button></td>
         </tr >
     )

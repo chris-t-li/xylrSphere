@@ -50,7 +50,7 @@ function Login({ user, setUser }) {
                 style={{
                     position: "absolute",
                     top: "25vh",
-                    left: "17vw",
+                    left: "13vw",
                     backgroundColor: "rgba(100,100,100,0.5)",
                     padding: "3% 4% 1.5% 4%",
                     borderRadius: "8px",

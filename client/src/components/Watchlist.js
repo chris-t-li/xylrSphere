@@ -32,9 +32,9 @@ function Watchlist({ user, watchlist, reFetch, setReFetch, fetchWatchlist }) {
                         <th style={{ width: "5%" }}>Coin</th>
                         <th>Last</th>
                         <th>Rating</th>
-                        <th>Change</th>
-                        <th>Details</th>
-                        <th style={{ width: "3%" }}>Move</th>
+                        {/* <th>Change</th>
+                        <th>Details</th> */}
+                        {/* <th style={{ width: "3%" }}>Move</th> */}
                         <th style={{ width: "3%" }}>X</th>
                     </tr>
                 </thead>

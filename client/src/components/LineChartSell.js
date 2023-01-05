@@ -6,7 +6,7 @@ function LineChartSell({ priceData, timeData, nftData }) {
         labels: timeData,
         datasets: [
             {
-                label: `Price Chart for ${nftData.name}`,
+                label: `Recent Price Trend for ${nftData.name}`,
                 data: priceData,
                 borderColor: "black",
                 backgroundColor: "black",

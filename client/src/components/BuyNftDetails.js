@@ -120,6 +120,22 @@ function BuyNftDetails({ selectBuyNFT, setReFetch, currentPrice }) {
 
     return (
         <div>
+            {trimmedPriceData.length === 0 ?
+                <div className="d-flex justify-content-center"
+
+                >
+                    <div className="spinner-border text-info" role="status"
+                        style={{
+                            height: "80px",
+                            width: "80px",
+                            position: "absolute",
+                            top: "7em",
+                            left: "30em"
+                        }}
+                    >
+                        {/* <span class="sr-only">Loading...</span> */}
+                    </div>
+                </div> : null}
             {renderNftData()}
             <Table >
                 <thead>

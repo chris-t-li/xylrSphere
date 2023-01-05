@@ -14,7 +14,7 @@ function LineChart({ trimmedPriceData, trimmedTimeData, selectBuyNFT }) {
         labels: trimmedTimeData,
         datasets: [
             {
-                label: `Price Chart for ${selectBuyNFT.name}`,
+                label: `Recent Price Trend for ${selectBuyNFT.name}`,
                 data: trimmedPriceData,
                 borderColor: randColor(),
                 backgroundColor: randColor(),
