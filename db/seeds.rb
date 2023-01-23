@@ -45,20 +45,20 @@ Nft.create(name: "Sushiverse", rarity: 7, supply: 50, chain: "ETH", on_market: t
 
 Nft.create(name: "Round Big Boy", rarity: 10, supply: 10, chain: "ETH", on_market: true, image_url: "https://i.seadn.io/gae/28AvfXcGX48MASyt4ZZ6tXhmN2U1xlaYYECLJnij8wlHR70KfTsa8UR-hzzHXOH54Gwrk1J9chfGETpXXUdM4t1jUBSYMtVBjNJKmag?auto=format&w=256")
 
-puts "Seeding Pricing.."
-Pricing.create(nft_id: 1, coin_id: 1, price_nft: 0.0020, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
-Pricing.create(nft_id: 2, coin_id: 1, price_nft: 1.345, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
-Pricing.create(nft_id: 3, coin_id: 1, price_nft: 65, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
-Pricing.create(nft_id: 4, coin_id: 1, price_nft: 0.875, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
-Pricing.create(nft_id: 5, coin_id: 1, price_nft: 0.003, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
-Pricing.create(nft_id: 6, coin_id: 1, price_nft: 0.005, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
-Pricing.create(nft_id: 7, coin_id: 1, price_nft: 0.235, created_at: Time.new(2022, 12, 1), 
-updated_at: Time.new(2022, 12, 1))
-Pricing.create(nft_id: 8, coin_id: 1, price_nft: 0.0895, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
-Pricing.create(nft_id: 9, coin_id: 1, price_nft: 0.0275, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
-Pricing.create(nft_id: 10, coin_id: 3, price_nft: 44, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
-Pricing.create(nft_id: 11, coin_id: 3, price_nft: 2.75, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
-Pricing.create(nft_id: 12, coin_id: 1, price_nft: 0.008, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
-Pricing.create(nft_id: 13, coin_id: 1, price_nft: 0.005, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
+# puts "Seeding Pricing.."
+# Pricing.create(nft_id: 1, coin_id: 1, price_nft: 0.0020, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
+# Pricing.create(nft_id: 2, coin_id: 1, price_nft: 1.345, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
+# Pricing.create(nft_id: 3, coin_id: 1, price_nft: 65, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
+# Pricing.create(nft_id: 4, coin_id: 1, price_nft: 0.875, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
+# Pricing.create(nft_id: 5, coin_id: 1, price_nft: 0.003, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
+# Pricing.create(nft_id: 6, coin_id: 1, price_nft: 0.005, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
+# Pricing.create(nft_id: 7, coin_id: 1, price_nft: 0.235, created_at: Time.new(2022, 12, 1), 
+# updated_at: Time.new(2022, 12, 1))
+# Pricing.create(nft_id: 8, coin_id: 1, price_nft: 0.0895, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
+# Pricing.create(nft_id: 9, coin_id: 1, price_nft: 0.0275, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
+# Pricing.create(nft_id: 10, coin_id: 3, price_nft: 44, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
+# Pricing.create(nft_id: 11, coin_id: 3, price_nft: 2.75, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
+# Pricing.create(nft_id: 12, coin_id: 1, price_nft: 0.008, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
+# Pricing.create(nft_id: 13, coin_id: 1, price_nft: 0.005, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
 
-puts "Done! :)"
+# puts "Done! :)"
