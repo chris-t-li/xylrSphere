@@ -6,8 +6,9 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Table from "react-bootstrap/table";
 
-const myModule = require("../key");
-const key = myModule.key;
+// const myModule = require("../key");
+key = process.env.STRIPE_PUBLIC_KEY
+// const key = myModule.key;
 // const coinKey = myModule.coinkey;
 const stripePromise = loadStripe(key);
 
