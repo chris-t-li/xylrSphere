@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Table from "react-bootstrap/table";
+import Table from "react-bootstrap/Table";
 import WatchlistItem from "./WatchlistItem";
 
 function Watchlist({ user, watchlist, reFetch, setReFetch, fetchWatchlist }) {

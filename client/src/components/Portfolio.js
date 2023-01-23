@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Table from "react-bootstrap/table";
+import Table from "react-bootstrap/Table";
 import PortoflioListItem from "./PortfolioListItem";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/esm/Button";

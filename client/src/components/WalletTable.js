@@ -1,4 +1,4 @@
-import Table from "react-bootstrap/table";
+import Table from "react-bootstrap/Table";
 
 function WalletTable({ walletData }) {
     const renderWalletData = walletData.map(entry => {

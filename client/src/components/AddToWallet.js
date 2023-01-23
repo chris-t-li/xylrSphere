@@ -4,7 +4,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import CheckoutForm from "./CheckoutForm";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Table from "react-bootstrap/table";
+import Table from "react-bootstrap/Table";
 
 // const myModule = require("../key");
 key = process.env.STRIPE_PUBLIC_KEY
