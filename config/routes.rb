@@ -36,4 +36,6 @@ Rails.application.routes.draw do
   # Portfolio routes
   get "portfolio/:user_id", to: "portfolios#get_my_portfolio"
   
+  # Client Side Routes
+  get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html?}
 end
