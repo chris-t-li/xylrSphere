@@ -13,7 +13,6 @@ function App() {
       .then(r => {
         if (r.ok) {
           r.json().then(user => {
-            // console.log(user)
             setUser(user)
           })
         }
@@ -22,8 +21,11 @@ function App() {
 
   return (
     <>
-      {/* <SideNavBar user={user} setUser={setUser} /> */}
-      <Main user={user} setUser={setUser} autoLogin={autoLogin} />
+      <Main
+        user={user}
+        setUser={setUser}
+        autoLogin={autoLogin}
+      />
     </>
   )
 

@@ -3,7 +3,6 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import SideNavBar from './SideNavBar';
 import NftListContainer from "./NftListContainer";
 import Login from "./Login";
-// import Profile from "./Profile";
 import Watchlist from "./Watchlist";
 import Wallet from "./Wallet";
 import Portfolio from "./Portfolio";
@@ -28,7 +27,6 @@ function Main({ user, setUser, autoLogin }) {
             .then(r => r.json())
             .then(data => {
                 setNFTs(data)
-                // console.log(data)
             })
     }
 
@@ -51,7 +49,6 @@ function Main({ user, setUser, autoLogin }) {
             fetch(`/portfolio/${user.id}`)
                 .then(r => r.json())
                 .then(listData => {
-                    // console.log(listData)
                     setPortfolioList(listData.filter(listItem => {
                         return listItem.ownership
                     }))
@@ -67,6 +64,16 @@ function Main({ user, setUser, autoLogin }) {
         <main>
             <SideNavBar user={user} setUser={setUser} setWatchlist={setWatchlist} setPortfolioList={setPortfolioList} redirectToLogin={redirectToLogin} />
             <Routes>
+                <Route path="/" element={
+                    <NftListContainer
+                        nfts={nfts}
+                        user={user}
+                        setUser={setUser}
+                        watchlist={watchlist}
+                        fetchNfts={fetchNfts}
+                        setReFetch={setReFetch}
+                    />} >
+                </Route>
                 <Route path="/nfts" element={
                     <NftListContainer
                         nfts={nfts}
@@ -85,7 +92,6 @@ function Main({ user, setUser, autoLogin }) {
 
                 <Route path="/login" element={<Login user={user} setUser={setUser} />} />
                 <Route path="/signup" element={<Signup setUser={setUser} />} />
-                {/* <Route path="/profile" element={<Profile user={user} />} /> */}
                 <Route path="/watchlist"
                     element={
                         <Watchlist

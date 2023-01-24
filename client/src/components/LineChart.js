@@ -4,12 +4,9 @@ import { Line } from 'react-chartjs-2';
 
 function LineChart({ trimmedPriceData, trimmedTimeData, selectBuyNFT }) {
     const randColor = () => {
-
-        // const r = Math.floor(256 * Math.random()), g = Math.floor(256 * Math.random()), b = Math.floor(256 * Math.random())
-        // return `rgb(${r}. ${g}, ${b})`
         return `rgb(0,0,0)`
     }
-    // console.log(Chart)
+
     const data = {
         labels: trimmedTimeData,
         datasets: [
@@ -18,10 +15,6 @@ function LineChart({ trimmedPriceData, trimmedTimeData, selectBuyNFT }) {
                 data: trimmedPriceData,
                 borderColor: randColor(),
                 backgroundColor: randColor(),
-                // fill: {
-                //     target: 'origin',
-                //     // below: randColor()
-                // }
             }
         ],
     };
@@ -90,10 +83,6 @@ function LineChart({ trimmedPriceData, trimmedTimeData, selectBuyNFT }) {
         <div id="nft-price-chart"
             style={{
                 height: "100%",
-                // display: "inline-block",
-                // position: "absolute",
-                // left: "43em",
-                // top: "6em"
             }}>
             <Line
                 data={data}
