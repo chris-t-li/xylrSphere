@@ -62,3 +62,13 @@
 # Pricing.create(nft_id: 13, coin_id: 1, price_nft: 0.005, created_at: Time.new(2022, 12, 1), updated_at: Time.new(2022, 12, 1))
 
 # puts "Done! :)"
+
+Nft.all.each do |n|
+    60.times do |t|
+      new_price = n.pricings.last.price_nft * Math.exp(rand(-0.005..0.005))
+      last_updated = n.pricings.last.updated_at
+      chain = Coin.find_by(ticker: n.chain)
+      Pricing.create(nft_id: n.id, coin_id: chain.id, price_nft: new_price, updated_at: last_updated + 60)
+    end
+    puts "Finished simulating prices for #{n.name}"
+end
