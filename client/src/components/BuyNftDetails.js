@@ -61,7 +61,7 @@ function BuyNftDetails({ selectBuyNFT, setReFetch, currentPrice }) {
     useEffect(() => {
         let counterVariable = 15;
         const timer = setInterval(() => {
-            if (counterVariable == 0) {
+            if (counterVariable === 0) {
                 clearInterval(timer)
                 setCount(0)
             } else {
@@ -147,12 +147,12 @@ function BuyNftDetails({ selectBuyNFT, setReFetch, currentPrice }) {
                 <tbody>
                     <tr>
                         <td>{selectBuyNFT.chain}</td>
-                        <td><img src={selectBuyNFT.chain_icon}></img></td>
+                        <td><img src={selectBuyNFT.chain_icon} alt="chain icon"></img></td>
                     </tr>
 
                     {nftData.on_market ? <tr>
                         <td>Price:</td>
-                        {!processBuyMessage ? <td style={count == 0 ? { textDecoration: "line-through", color: "red" } : null}>{currentPrice}</td> : <td>{currentPrice}</td>}
+                        {!processBuyMessage ? <td style={count === 0 ? { textDecoration: "line-through", color: "red" } : null}>{currentPrice}</td> : <td>{currentPrice}</td>}
                     </tr> : null}
                     {nftData.on_market ? <tr>
                         <td>Price Valid for:</td>
@@ -167,7 +167,7 @@ function BuyNftDetails({ selectBuyNFT, setReFetch, currentPrice }) {
                     <button
                         onClick={processBuy}
                         className="btn btn-outline-success"
-                        disabled={count == 0 || processBuyMessage ? true : false}
+                        disabled={count === 0 || processBuyMessage ? true : false}
                     >BUY
                     </button> :
                     <button disabled>SOLD</button>}
@@ -175,8 +175,8 @@ function BuyNftDetails({ selectBuyNFT, setReFetch, currentPrice }) {
             {processBuyMessage &&
                 <div>
                     <h2>NFT Purchased!</h2>
-                    <p>You just bought {selectBuyNFT.name} for <img src={selectBuyNFT.chain_icon}></img>{processBuyMessage.purchase_price.toFixed(5)}</p>
-                    <p>Remaining <img src={selectBuyNFT.chain_icon}></img> in wallet: {processBuyMessage.remaining_coin_in_wallet.toFixed(5)}</p>
+                    <p>You just bought {selectBuyNFT.name} for <img src={selectBuyNFT.chain_icon} alt="chain icon"></img>{processBuyMessage.purchase_price.toFixed(5)}</p>
+                    <p>Remaining <img src={selectBuyNFT.chain_icon} alt="chain icon"></img> in wallet: {processBuyMessage.remaining_coin_in_wallet.toFixed(5)}</p>
                     <p>Your portfolio and wallet have been updated</p>
                 </div>
             }

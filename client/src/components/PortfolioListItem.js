@@ -12,10 +12,6 @@ function PortfolioListItem({ nft, handleShow }) {
         rating: "✦".repeat(nft.nft.rarity)
     }
 
-    const showNFTDetails = () => {
-        navigate(`/nftmain/${nft.nft.id}`)
-    }
-
     return (
         <tr>
             <td><img
@@ -30,8 +26,6 @@ function PortfolioListItem({ nft, handleShow }) {
             <td>{obj.purchasePrice}</td>
             <td>{(obj.lastPrice - obj.purchasePrice).toFixed(5)}</td>
             <td>{obj.rating}</td>
-            {/* <td><img src="/stockicon.png" style={{ height: "50px" }} onClick={showNFTDetails}></img></td> */}
-            {/* <td><button >☰</button></td> */}
             <td><button onClick={() => handleShow(nft)}>Sell</button></td>
         </tr >
     )

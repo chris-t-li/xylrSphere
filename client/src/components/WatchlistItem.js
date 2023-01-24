@@ -19,10 +19,6 @@ function WatchlistItem({ nft, setReFetch }) {
             )
     }
 
-    const showNFTDetails = () => {
-        navigate(`/nftmain/${nft.nft.id}`)
-    }
-
     return (
 
         <tr>

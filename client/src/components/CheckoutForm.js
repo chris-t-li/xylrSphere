@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { useStripe, useElements } from '@stripe/react-stripe-js';
 import Button from 'react-bootstrap/Button';
-// import PaymentStatus from './PaymentStatus';
 
-function CheckoutForm({ user, addToWalletData, setAddToWalletData, setOptions, setWalletUpdate, setPaymentSuccess }) {
+function CheckoutForm({ user, addToWalletData, setOptions, setWalletUpdate, setPaymentSuccess }) {
     const stripe = useStripe();
     const elements = useElements();
     const [errorMessage, setErrorMessage] = useState(null);
@@ -56,15 +55,9 @@ function CheckoutForm({ user, addToWalletData, setAddToWalletData, setOptions, s
         setIsLoading(false);
     }
 
-    const successMessage = <div>
-        <h5>Payment Confirmed! Your wallet has been updated.</h5>
-    </div>
-
     return (
         <div>
-            <form
-            // onSubmit={submitPayment}
-            >
+            <form>
                 {errorMessage && <div style={{ color: "red", margin: "0.5em 0" }}>{errorMessage}</div>}
                 <div className="d-flex justify-content-center">
                     <Button

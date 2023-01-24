@@ -3,13 +3,12 @@ import Table from "react-bootstrap/Table";
 function WalletTable({ walletData }) {
     const renderWalletData = walletData.map(entry => {
         const dateDetails = new Date(entry.coin.updated_at)
-        // debugger
 
         return (
             <tr key={entry.id}>
 
                 <td>{entry.coin.ticker}</td>
-                <td><img src={entry.coin.icon} /></td>
+                <td><img src={entry.coin.icon} alt="coin icon" /></td>
                 <td>{entry.coin.name}</td>
                 <td className="text-end">{entry.coin.last_price.toFixed(2)}</td>
                 <td className="text-end">{entry.quantity.toFixed(4)}</td>

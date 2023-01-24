@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import LineChartSell from "./LineChartSell";
 import Table from "react-bootstrap/esm/Table";
 
-
-function SellNFTDetails({ selectSellNFT, setReFetch }) {
+function SellNFTDetails({ selectSellNFT }) {
     const [nftData, setNftData] = useState({});
     const [count, setCount] = useState(15);
     const [priceData, setPriceData] = useState([]);
@@ -15,7 +14,6 @@ function SellNFTDetails({ selectSellNFT, setReFetch }) {
             .then(r => {
                 if (r.ok) {
                     r.json().then(res => {
-                        // console.log(res)
                         setNftData(res)
                         setPriceData(res.most_recent_pricings.map(p => p.price_nft))
                         setTimeData(res.most_recent_pricings.map(p => {
@@ -31,7 +29,7 @@ function SellNFTDetails({ selectSellNFT, setReFetch }) {
     useEffect(() => {
         let counterVariable = 15;
         const timer = setInterval(() => {
-            if (counterVariable == 0) {
+            if (counterVariable === 0) {
                 clearInterval(timer)
                 setCount(0)
             } else {
@@ -72,6 +70,7 @@ function SellNFTDetails({ selectSellNFT, setReFetch }) {
                 <div className="col-sm-4">
                     <img src={selectSellNFT.nft.image_url}
                         style={{ width: "100%" }}
+                        alt="nft"
                     ></img>
 
 
@@ -90,7 +89,7 @@ function SellNFTDetails({ selectSellNFT, setReFetch }) {
             <tbody>
                 <tr>
                     <td>{selectSellNFT.nft.chain}</td>
-                    <td><img src={selectSellNFT.nft.chain_icon}></img></td>
+                    <td><img src={selectSellNFT.nft.chain_icon} alt="chain icon"></img></td>
                 </tr>
                 <tr>
                     <td>Purchased at:</td>
@@ -98,14 +97,14 @@ function SellNFTDetails({ selectSellNFT, setReFetch }) {
                 </tr>
                 <tr>
                     <td>Sell Price:</td>
-                    {!processSellMessage ? <td style={count == 0 ? { textDecoration: "line-through", color: "red" } : null}>
+                    {!processSellMessage ? <td style={count === 0 ? { textDecoration: "line-through", color: "red" } : null}>
                         {selectSellNFT.nft.latest_price.price_nft.toFixed(5)}
                     </td> : <td>{selectSellNFT.nft.latest_price.price_nft.toFixed(5)}</td>}
                 </tr>
 
                 <tr>
                     <td>Profit / Loss:</td>
-                    {!processSellMessage ? <td>{count == 0 ? "-" : (selectSellNFT.nft.latest_price.price_nft - selectSellNFT.purchase_price).toFixed(5)}</td> : <td>{(selectSellNFT.nft.latest_price.price_nft - selectSellNFT.purchase_price).toFixed(5)}</td>}
+                    {!processSellMessage ? <td>{count === 0 ? "-" : (selectSellNFT.nft.latest_price.price_nft - selectSellNFT.purchase_price).toFixed(5)}</td> : <td>{(selectSellNFT.nft.latest_price.price_nft - selectSellNFT.purchase_price).toFixed(5)}</td>}
                 </tr>
                 <tr>
                     <td>Price Valid for:</td>
@@ -116,7 +115,7 @@ function SellNFTDetails({ selectSellNFT, setReFetch }) {
         <div className="d-flex justify-content-center">
             <button
                 className="btn btn-outline-danger"
-                disabled={count == 0 || processSellMessage ? true : false}
+                disabled={count === 0 || processSellMessage ? true : false}
                 onClick={processSell}
             >{processSellMessage ? "SOLD" : "SELL"}</button>
         </div>
